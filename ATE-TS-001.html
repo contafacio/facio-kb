@@ -8,33 +8,33 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #F7F7F5;
-    --surface: #FFFFFF;
-    --border: #E4E4E0;
-    --border-strong: #CECECA;
-    --text: #1A1A18;
-    --text-muted: #6B6B67;
-    --text-faint: #9B9B97;
+    --bg: #191919;
+    --surface: #222222;
+    --border: #333333;
+    --border-strong: #444444;
+    --text: #EDEDEB;
+    --text-muted: #9B9B97;
+    --text-faint: #616160;
     --accent: #C0392B;
-    --accent-bg: #FEF2F1;
-    --accent-border: #F5C6C3;
-    --warn-bg: #FFFBEB;
-    --warn-border: #FDE68A;
-    --warn-text: #92400E;
-    --ok-bg: #F0FDF4;
-    --ok-border: #BBF7D0;
-    --ok-text: #14532D;
-    --info-bg: #EFF6FF;
-    --info-border: #BFDBFE;
-    --info-text: #1E3A5F;
-    --step-test: #EFF6FF;
-    --step-test-b: #93C5FD;
-    --step-action: #F0FDF4;
-    --step-action-b: #86EFAC;
-    --step-check: #FEFCE8;
-    --step-check-b: #FDE047;
-    --step-obs: #F7F7F5;
-    --step-obs-b: #D4D4D0;
+    --accent-bg: #2A1515;
+    --accent-border: #5A2020;
+    --warn-bg: #272210;
+    --warn-border: #4A3D10;
+    --warn-text: #FDE047;
+    --ok-bg: #162318;
+    --ok-border: #1F4A2A;
+    --ok-text: #86EFAC;
+    --info-bg: #1A2535;
+    --info-border: #2D4A7A;
+    --info-text: #93C5FD;
+    --step-test: #1A2535;
+    --step-test-b: #2D4A7A;
+    --step-action: #162318;
+    --step-action-b: #1F4A2A;
+    --step-check: #272210;
+    --step-check-b: #4A3D10;
+    --step-obs: #2A2A2A;
+    --step-obs-b: #444444;
     --radius: 8px;
     --radius-sm: 5px;
     --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
@@ -42,7 +42,7 @@
 
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--bg);
+    background: #252525;
     color: var(--text);
     font-size: 14px;
     line-height: 1.6;
@@ -86,7 +86,7 @@
     border-radius: var(--radius-sm);
     font-size: 13px;
     color: var(--text);
-    background: var(--bg);
+    background: #252525;
     outline: none;
     font-family: inherit;
   }
@@ -117,7 +117,7 @@
     transition: background 0.1s, color 0.1s;
     margin-bottom: 1px;
   }
-  .sidebar-item:hover { background: var(--bg); color: var(--text); }
+  .sidebar-item:hover { background: #252525; color: var(--text); }
   .sidebar-item.active { background: var(--accent-bg); color: var(--accent); font-weight: 500; }
   .sidebar-item .sev {
     margin-left: auto;
@@ -218,7 +218,7 @@
     user-select: none;
     transition: background 0.1s;
   }
-  .card-header:hover { background: var(--bg); }
+  .card-header:hover { background: #252525; }
 
   .card-id {
     font-size: 11px;
@@ -381,7 +381,7 @@
     overflow: hidden;
   }
   .escalation-head {
-    background: var(--bg);
+    background: #252525;
     padding: 6px 10px;
     font-size: 10px;
     font-weight: 700;
@@ -401,7 +401,7 @@
   }
   .no-escalation {
     padding: 10px 12px;
-    background: var(--bg);
+    background: #252525;
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     font-size: 12px;
@@ -415,7 +415,7 @@
   code {
     font-family: 'SF Mono', 'Fira Code', monospace;
     font-size: 12px;
-    background: var(--bg);
+    background: #252525;
     border: 1px solid var(--border);
     border-radius: 3px;
     padding: 1px 5px;
@@ -1033,7 +1033,22 @@
         <div class="card-section">
           <div class="card-section-label">Passos</div>
           <div class="steps">
-            <div class="step step-check"><span class="step-num">1</span><span class="step-icon">✓</span><div class="step-body"><span class="step-tag">Verificar</span>Confirme o status no Retool como "Autorização revogada".</div></div>
+            <div class="step step-check"><span class="step-num">1</span><span class="step-icon">✓</span><div class="step-body"><span class="step-tag">Verificar</span>Confirme o status no Retool como "Autorização revogada". Veja onde localizar:
+              <div style="margin-top:10px; background:#1A1A1A; border:1px solid #333; border-radius:6px; padding:14px 16px; font-size:12px;">
+                <div style="font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#616160; margin-bottom:10px;">Autorização do Pix Inteligente · exemplo Retool</div>
+                <div style="display:grid; grid-template-columns:160px 1fr; gap:0; border:1px solid #333; border-radius:5px; overflow:hidden;">
+                  <div style="padding:8px 10px; background:#252525; border-bottom:1px solid #333; color:#9B9B97; font-size:12px;">Banco autorizado</div>
+                  <div style="padding:8px 10px; background:#252525; border-bottom:1px solid #333; border-left:1px solid #333; color:#EDEDEB; font-size:12px;">NuBank - 260</div>
+                  <div style="padding:8px 10px; border-bottom:1px solid #333; color:#9B9B97; font-size:12px;">Data de autorização</div>
+                  <div style="padding:8px 10px; border-bottom:1px solid #333; border-left:1px solid #333; color:#EDEDEB; font-size:12px;">Feb 3, 2026 6:45 PM</div>
+                  <div style="padding:8px 10px; background:#252525; border-bottom:1px solid #333; color:#9B9B97; font-size:12px;">Status da autorização</div>
+                  <div style="padding:8px 10px; background:#252525; border-bottom:1px solid #333; border-left:1px solid #333; font-size:12px;"><span style="background:#2A1515; color:#F87171; border:1px solid #5A2020; border-radius:4px; padding:2px 8px; font-weight:600; font-size:11px;">Revogada</span></div>
+                  <div style="padding:8px 10px; color:#9B9B97; font-size:12px;">Última atualização</div>
+                  <div style="padding:8px 10px; border-left:1px solid #333; color:#EDEDEB; font-size:12px;">May 30, 2026 3:42 PM</div>
+                </div>
+                <div style="margin-top:8px; font-size:11px; color:#616160;">↑ Campo "Status da autorização" — deve aparecer como <strong style="color:#F87171;">Revogada</strong> para este erro</div>
+              </div>
+            </div></div>
             <div class="step step-acao"><span class="step-num">2</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Informe que a autorização foi revogada e que não é mais possível realizar transferências via Pix Inteligente.</div></div>
             <div class="step step-acao"><span class="step-num">3</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Oriente sobre os próximos passos conforme o produto ativo do cliente (ver POP correspondente).</div></div>
           </div>
