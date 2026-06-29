@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Troubleshooting – Atendimento Facio</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F7F5;
+    --surface: #FFFFFF;
+    --border: #E4E4E0;
+    --border-strong: #CECECA;
+    --text: #1A1A18;
+    --text-muted: #6B6B67;
+    --text-faint: #9B9B97;
+    --accent: #C0392B;
+    --accent-bg: #FEF2F1;
+    --accent-border: #F5C6C3;
+    --warn-bg: #FFFBEB;
+    --warn-border: #FDE68A;
+    --warn-text: #92400E;
+    --ok-bg: #F0FDF4;
+    --ok-border: #BBF7D0;
+    --ok-text: #14532D;
+    --info-bg: #EFF6FF;
+    --info-border: #BFDBFE;
+    --info-text: #1E3A5F;
+    --step-test: #EFF6FF;
+    --step-test-b: #93C5FD;
+    --step-action: #F0FDF4;
+    --step-action-b: #86EFAC;
+    --step-check: #FEFCE8;
+    --step-check-b: #FDE047;
+    --step-obs: #F7F7F5;
+    --step-obs-b: #D4D4D0;
+    --radius: 8px;
+    --radius-sm: 5px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── LAYOUT ── */
+  .layout { display: flex; min-height: 100vh; }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .sidebar-brand {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .sidebar-brand-name { font-size: 13px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+  .sidebar-brand-sub { font-size: 11px; color: var(--text-faint); margin-top: 2px; }
+
+  .sidebar-search {
+    padding: 0 12px 16px;
+  }
+  .sidebar-search input {
+    width: 100%;
+    padding: 7px 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    color: var(--text);
+    background: var(--bg);
+    outline: none;
+    font-family: inherit;
+  }
+  .sidebar-search input:focus { border-color: var(--accent); }
+  .sidebar-search input::placeholder { color: var(--text-faint); }
+
+  .sidebar-section { padding: 0 12px 4px; }
+  .sidebar-section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    padding: 0 8px;
+    margin-bottom: 4px;
+  }
+
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 13px;
+    transition: background 0.1s, color 0.1s;
+    margin-bottom: 1px;
+  }
+  .sidebar-item:hover { background: var(--bg); color: var(--text); }
+  .sidebar-item.active { background: var(--accent-bg); color: var(--accent); font-weight: 500; }
+  .sidebar-item .sev {
+    margin-left: auto;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 1px 5px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .sev-alta { background: #FEE2E2; color: #991B1B; }
+  .sev-media { background: #FEF9C3; color: #713F12; }
+  .sev-baixa { background: #F0FDF4; color: #14532D; }
+
+  .sidebar-divider { height: 1px; background: var(--border); margin: 12px 12px; }
+
+  /* ── MAIN ── */
+  .main {
+    flex: 1;
+    padding: 40px 48px;
+    max-width: 860px;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header { margin-bottom: 40px; }
+  .page-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .page-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .page-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .page-meta-item { font-size: 12px; color: var(--text-muted); }
+  .page-meta-item strong { color: var(--text); font-weight: 500; }
+
+  /* ── HOW TO USE ── */
+  .how-to-use {
+    background: var(--info-bg);
+    border: 1px solid var(--info-border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-bottom: 40px;
+    font-size: 13px;
+    color: var(--info-text);
+    line-height: 1.7;
+  }
+  .how-to-use strong { font-weight: 600; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 48px; scroll-margin-top: 24px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--text);
+  }
+  .section-title { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); }
+  .section-count {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--text-faint);
+    font-weight: 500;
+  }
+
+  /* ── ERROR CARD ── */
+  .error-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    scroll-margin-top: 24px;
+  }
+  .error-card.hidden { display: none; }
+
+  .card-header {
+    padding: 14px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    user-select: none;
+    transition: background 0.1s;
+  }
+  .card-header:hover { background: var(--bg); }
+
+  .card-id {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border: 1px solid var(--accent-border);
+    border-radius: 4px;
+    padding: 2px 7px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .card-header-body { flex: 1; min-width: 0; }
+  .card-title { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.4; }
+  .card-meta { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+
+  .card-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .sev-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+  .chevron {
+    font-size: 12px;
+    color: var(--text-faint);
+    transition: transform 0.2s;
+    margin-top: 2px;
+  }
+  .card-header.open .chevron { transform: rotate(180deg); }
+
+  /* ── CARD BODY ── */
+  .card-body {
+    display: none;
+    border-top: 1px solid var(--border);
+  }
+  .card-body.open { display: block; }
+
+  .card-section {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .card-section:last-child { border-bottom: none; }
+  .card-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 6px;
+  }
+  .card-section-text { font-size: 13px; color: var(--text); line-height: 1.6; }
+
+  /* ── STEPS ── */
+  .steps { display: flex; flex-direction: column; gap: 6px; }
+  .step {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    border-left: 3px solid transparent;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .step-teste  { background: var(--step-test);   border-color: var(--step-test-b);   }
+  .step-acao   { background: var(--step-action); border-color: var(--step-action-b); }
+  .step-check  { background: var(--step-check);  border-color: var(--step-check-b);  }
+  .step-obs    { background: var(--step-obs);    border-color: var(--step-obs-b);    }
+
+  .step-num {
+    min-width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+    background: rgba(0,0,0,0.06);
+    color: var(--text);
+    margin-top: 1px;
+  }
+  .step-icon {
+    font-size: 13px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-body { flex: 1; color: var(--text); }
+  .step-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .step-teste  .step-tag { color: #1E40AF; }
+  .step-acao   .step-tag { color: #14532D; }
+  .step-check  .step-tag { color: #713F12; }
+  .step-obs    .step-tag { color: #4B5563; }
+
+  /* ── INLINE BLOCKS ── */
+  .if-block {
+    margin-top: 8px;
+    background: rgba(0,0,0,0.035);
+    border-radius: var(--radius-sm);
+    padding: 8px 10px;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .if-row { display: flex; gap: 6px; }
+  .if-cond { font-weight: 600; color: var(--text-muted); min-width: 80px; flex-shrink: 0; }
+
+  .alert-block {
+    margin-top: 0;
+    background: var(--accent-bg);
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    font-size: 12px;
+    color: #7F1D1D;
+    line-height: 1.6;
+  }
+  .alert-block strong { font-weight: 600; }
+
+  .result-block {
+    background: var(--ok-bg);
+    border: 1px solid var(--ok-border);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    font-size: 12px;
+    color: var(--ok-text);
+    line-height: 1.6;
+  }
+
+  /* ── ESCALATION ── */
+  .escalation {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .escalation-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .escalation-head {
+    background: var(--bg);
+    padding: 6px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .escalation-head + .escalation-head,
+  .escalation-cell + .escalation-cell {
+    border-left: 1px solid var(--border);
+  }
+  .escalation-cell {
+    padding: 8px 10px;
+    color: var(--text);
+    font-size: 12px;
+  }
+  .no-escalation {
+    padding: 10px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    color: var(--text-faint);
+    font-style: italic;
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty { text-align: center; padding: 60px 20px; color: var(--text-faint); font-size: 13px; }
+
+  code {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1px 5px;
+  }
+
+  /* ── LEGEND ── */
+  .legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 32px;
+    font-size: 12px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; color: var(--text-muted); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-brand">
+    <div class="sidebar-brand-name">Facio · Base de Conhecimento</div>
+    <div class="sidebar-brand-sub">Troubleshooting – ATE-TS-001</div>
+  </div>
+  <div class="sidebar-search">
+    <input type="text" id="search" placeholder="Buscar erro..." oninput="filterErrors(this.value)">
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Cadastro</div>
+    <a class="sidebar-item" href="#CAD-E-001">CAD-E-001 <span class="sev sev-media">Média</span></a>
+    <a class="sidebar-item" href="#CAD-E-002">CAD-E-002 <span class="sev sev-media">Média</span></a>
+    <a class="sidebar-item" href="#CAD-E-003">CAD-E-003 <span class="sev sev-media">Média</span></a>
+    <a class="sidebar-item" href="#CAD-E-004">CAD-E-004 <span class="sev sev-media">Média</span></a>
+    <a class="sidebar-item" href="#CAD-E-005">CAD-E-005 <span class="sev sev-alta">Alta</span></a>
+  </div>
+
+  <div class="sidebar-divider"></div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Pix Inteligente</div>
+    <a class="sidebar-item" href="#PIX-E-001">PIX-E-001 <span class="sev sev-media">Média</span></a>
+    <a class="sidebar-item" href="#PIX-E-002">PIX-E-002 <span class="sev sev-media">Média</span></a>
+    <a class="sidebar-item" href="#PIX-E-003">PIX-E-003 <span class="sev sev-media">Média</span></a>
+    <a class="sidebar-item" href="#PIX-E-004">PIX-E-004 <span class="sev sev-media">Média</span></a>
+    <a class="sidebar-item" href="#PIX-E-005">PIX-E-005 <span class="sev sev-media">Média</span></a>
+    <a class="sidebar-item" href="#PIX-E-006">PIX-E-006 <span class="sev sev-alta">Alta</span></a>
+    <a class="sidebar-item" href="#PIX-E-007">PIX-E-007 <span class="sev sev-alta">Alta</span></a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+  <div class="page-header">
+    <div class="page-eyebrow">Troubleshooting · ATE-TS-001</div>
+    <div class="page-title">Guia de Tratativas<br>Atendimento ao Usuário</div>
+    <div class="page-meta">
+      <span class="page-meta-item">Versão <strong>1.0</strong></span>
+      <span class="page-meta-item">Revisão <strong>01/07/2026</strong></span>
+      <span class="page-meta-item">Status <strong style="color:#16A34A">✔ Ativo</strong></span>
+    </div>
+  </div>
+
+  <div class="how-to-use">
+    <strong>Como usar:</strong> Localize o ID do erro na barra lateral ou use a busca. Abra o card e siga os passos na ordem indicada. Se nenhuma tratativa resolver, acione a escalação indicada no final do card.
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#93C5FD"></div> Teste — verifique antes de agir</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#86EFAC"></div> Ação — executa e pode alterar dados</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#FDE047"></div> Verificar — confirme o resultado</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#D4D4D0"></div> Obs — contexto adicional</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- CADASTRO -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="section" id="sec-cadastro">
+    <div class="section-header">
+      <div class="section-title">Cadastro</div>
+      <div class="section-count">5 erros</div>
+    </div>
+
+    <!-- CAD-E-001 -->
+    <div class="error-card" id="CAD-E-001" data-title="Erro de sistema no cadastro Belvo Cumbuca navegador redirecionamento">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="card-id">CAD-E-001</span>
+        <div class="card-header-body">
+          <div class="card-title">Erro de sistema no cadastro</div>
+          <div class="card-meta">Belvo / Cumbuca / navegador / redirecionamento · Frequência: Recorrente</div>
+        </div>
+        <div class="card-right">
+          <span class="sev-badge sev-media">Média</span>
+          <span class="chevron">▾</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-section-label">O que o usuário vê</div>
+          <div class="card-section-text">Tela de erro na Belvo ou Cumbuca durante o cadastro, o navegador retorna erro, ou o cliente não é redirecionado para o app do banco para concluir o fluxo.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Causa raiz / hipótese</div>
+          <div class="card-section-text">Incompatibilidade de navegador · Cache corrompido · Instabilidade temporária na integração com Belvo ou Cumbuca · Falha de redirecionamento.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Passos</div>
+          <div class="steps">
+            <div class="step step-teste"><span class="step-num">1</span><span class="step-icon">🧪</span><div class="step-body"><span class="step-tag">Teste</span>Pergunte em qual etapa o erro ocorreu: Belvo, Cumbuca, navegador ou redirecionamento para o app do banco.</div></div>
+            <div class="step step-acao"><span class="step-num">2</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Oriente o cliente a fechar completamente o navegador ou app, reiniciar o aparelho e tentar novamente.</div></div>
+            <div class="step step-acao"><span class="step-num">3</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Peça que acesse pelo <strong>Google Chrome</strong> — outros navegadores podem ter incompatibilidades com o fluxo.</div></div>
+            <div class="step step-check"><span class="step-num">4</span><span class="step-icon">✓</span><div class="step-body"><span class="step-tag">Verificar</span>O cadastro avançou normalmente? Se sim, concluído. Se não, avance.</div></div>
+            <div class="step step-obs"><span class="step-num">5</span><span class="step-icon">📝</span><div class="step-body"><span class="step-tag">Obs</span>Se persistir em múltiplos dispositivos, pode ser instabilidade da Belvo ou Cumbuca. Registre e acompanhe canais de status.</div></div>
+          </div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Resultado esperado</div>
+          <div class="result-block">Cadastro avança normalmente pelo Chrome após reiniciar o aparelho.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Escalação</div>
+          <div class="escalation">
+            <div class="escalation-row">
+              <div class="escalation-head">Quando escalar</div>
+              <div class="escalation-head">Para quem</div>
+              <div class="escalation-head">Canal / como</div>
+              <div class="escalation-cell">Erro persiste após todas as tratativas em múltiplos dispositivos</div>
+              <div class="escalation-cell">N2 — Suporte Técnico</div>
+              <div class="escalation-cell">Canal interno · Informar: CAD-E-001, etapa do erro, navegador e print</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAD-E-002 -->
+    <div class="error-card" id="CAD-E-002" data-title="Código acesso não recebido WhatsApp">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="card-id">CAD-E-002</span>
+        <div class="card-header-body">
+          <div class="card-title">Código de acesso não recebido via WhatsApp</div>
+          <div class="card-meta">WhatsApp / Plataforma de envio · Frequência: Frequente</div>
+        </div>
+        <div class="card-right">
+          <span class="sev-badge sev-media">Média</span>
+          <span class="chevron">▾</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-section-label">O que o usuário vê</div>
+          <div class="card-section-text">Cliente informa que solicitou o código de acesso mas não recebeu nada no WhatsApp, mesmo aguardando.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Causa raiz / hipótese</div>
+          <div class="card-section-text">Canal incorreto (SMS ao invés de WhatsApp) · Acesso pelo WhatsApp Web (código não vai para PC) · Número da Facio bloqueado pelo cliente.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Passos</div>
+          <div class="steps">
+            <div class="step step-teste"><span class="step-num">1</span><span class="step-icon">🧪</span><div class="step-body"><span class="step-tag">Teste</span>Confirme se o cliente solicitou pela opção <strong>WhatsApp</strong> — e não SMS. São canais distintos.</div></div>
+            <div class="step step-teste"><span class="step-num">2</span><span class="step-icon">🧪</span><div class="step-body"><span class="step-tag">Teste</span>Verifique se está acessando pelo <strong>celular</strong>. O código não é enviado para o WhatsApp Web (computador).</div></div>
+            <div class="step step-acao"><span class="step-num">3</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Se estiver no celular e não recebeu: oriente a reiniciar o aparelho e solicitar o código novamente.</div></div>
+            <div class="step step-teste"><span class="step-num">4</span><span class="step-icon">🧪</span><div class="step-body"><span class="step-tag">Teste</span>Se ainda não chegar: verifique se o cliente <strong>bloqueou o número da Facio</strong> no WhatsApp.</div></div>
+            <div class="step step-acao"><span class="step-num">5</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Se bloqueado: oriente a desbloquear e solicitar o código novamente. Envie a imagem de apoio.</div></div>
+          </div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Resultado esperado</div>
+          <div class="result-block">Cliente recebe o código via WhatsApp no celular e acessa o cadastro normalmente.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Escalação</div>
+          <div class="no-escalation">Sem escalação prevista — orientar o cliente e registrar o atendimento.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAD-E-003 -->
+    <div class="error-card" id="CAD-E-003" data-title="Número telefone em uso cadastro ativo conflito">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="card-id">CAD-E-003</span>
+        <div class="card-header-body">
+          <div class="card-title">Número de telefone já em uso — cadastro ativo</div>
+          <div class="card-meta">Retool · Frequência: Esporádico</div>
+        </div>
+        <div class="card-right">
+          <span class="sev-badge sev-media">Média</span>
+          <span class="chevron">▾</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-section-label">O que o usuário vê</div>
+          <div class="card-section-text">Ao tentar atualizar o número de telefone, o sistema indica que o número já está vinculado a outro cadastro ativo.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Passos</div>
+          <div class="steps">
+            <div class="step step-acao"><span class="step-num">1</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Informe ao cliente que o número está em uso por outro cadastro.</div></div>
+            <div class="step step-teste"><span class="step-num">2</span><span class="step-icon">🧪</span><div class="step-body"><span class="step-tag">Teste</span>Pergunte se conhece a pessoa vinculada ao número.
+              <div class="if-block">
+                <div class="if-row"><span class="if-cond">Conhece →</span><span>oriente essa pessoa a alterar o número no próprio cadastro para liberar</span></div>
+                <div class="if-row"><span class="if-cond">Não conhece →</span><span>solicite ao cliente outro número disponível</span></div>
+              </div>
+            </div></div>
+          </div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Resultado esperado</div>
+          <div class="result-block">Número liberado pelo titular anterior ou cliente fornece número alternativo.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Escalação</div>
+          <div class="no-escalation">Sem escalação prevista — orientar o cliente e registrar o atendimento.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAD-E-004 -->
+    <div class="error-card" id="CAD-E-004" data-title="Número telefone em uso cadastro inativo DDD 01">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="card-id">CAD-E-004</span>
+        <div class="card-header-body">
+          <div class="card-title">Número de telefone já em uso — cadastro inativo</div>
+          <div class="card-meta">Retool · Frequência: Esporádico</div>
+        </div>
+        <div class="card-right">
+          <span class="sev-badge sev-media">Média</span>
+          <span class="chevron">▾</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-section-label">O que o usuário vê</div>
+          <div class="card-section-text">O número desejado está vinculado a um cadastro inativo. O cliente não consegue utilizá-lo.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Passos</div>
+          <div class="steps">
+            <div class="step step-acao"><span class="step-num">1</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Acesse o cadastro inativo vinculado ao número no Retool.</div></div>
+            <div class="step step-acao"><span class="step-num">2</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Altere o DDD do cadastro inativo para <code>01</code> e salve. Isso libera o número.</div></div>
+            <div class="step step-obs"><span class="step-num">3</span><span class="step-icon">📝</span><div class="step-body"><span class="step-tag">Obs</span>Anote o ID do cadastro inativo que cedeu o número para rastreabilidade.</div></div>
+            <div class="step step-acao"><span class="step-num">4</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Marque o ID original como <strong>suspeita de fraude</strong> no Retool.</div></div>
+            <div class="step step-acao"><span class="step-num">5</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Oriente o cliente a realizar a alteração do número pelo app.</div></div>
+          </div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Resultado esperado</div>
+          <div class="result-block">Número liberado. Cliente consegue associá-lo ao próprio cadastro via app.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Escalação</div>
+          <div class="no-escalation">Sem escalação prevista — orientar o cliente e registrar o atendimento.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAD-E-005 -->
+    <div class="error-card" id="CAD-E-005" data-title="Cliente não reconhece produto contratado suspeita fraude">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="card-id">CAD-E-005</span>
+        <div class="card-header-body">
+          <div class="card-title">Cliente não reconhece o produto contratado</div>
+          <div class="card-meta">Retool · Frequência: Esporádico</div>
+        </div>
+        <div class="card-right">
+          <span class="sev-badge sev-alta">Alta</span>
+          <span class="chevron">▾</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-section-label">O que o usuário vê</div>
+          <div class="card-section-text">Cliente afirma não se lembrar ou não ter realizado a contratação do produto.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Causa raiz / hipótese</div>
+          <div class="card-section-text">Esquecimento genuíno · Contratação por familiar com acesso ao dispositivo · Fraude — uso indevido de dados por terceiro.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Passos</div>
+          <div class="steps">
+            <div class="step step-acao"><span class="step-num">1</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Tranquilize o cliente — explique que vai verificar junto com ele.</div></div>
+            <div class="step step-acao"><span class="step-num">2</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Envie as informações principais: dados de cadastro, data da solicitação, vencimento, contrato e comprovante de depósito.</div></div>
+            <div class="step step-check"><span class="step-num">3</span><span class="step-icon">✓</span><div class="step-body"><span class="step-tag">Verificar</span>Cliente reconheceu ao ver os dados? Se sim, retorne ao fluxo normal.</div></div>
+            <div class="step step-teste"><span class="step-num">4</span><span class="step-icon">🧪</span><div class="step-body"><span class="step-tag">Teste</span>Se insistir que não reconhece: siga o artigo de Suspeita de Fraude. Solicite o extrato bancário do período.</div></div>
+            <div class="step step-acao"><span class="step-num">5</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Verifique no extrato: após receber o valor, ele foi enviado a terceiros? Esse é o principal indicador de fraude.</div></div>
+          </div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Atenção</div>
+          <div class="alert-block"><strong>⚠ Confirmada suspeita de fraude:</strong> escale imediatamente conforme o POP de Suspeita de Fraude. Não dê continuidade ao atendimento padrão.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Resultado esperado</div>
+          <div class="result-block">Situação identificada como esquecimento (cliente reconhece) ou encaminhada como fraude para a equipe responsável.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Escalação</div>
+          <div class="escalation">
+            <div class="escalation-row">
+              <div class="escalation-head">Quando escalar</div>
+              <div class="escalation-head">Para quem</div>
+              <div class="escalation-head">Canal / como</div>
+              <div class="escalation-cell">Cliente insiste em não reconhecer após ver todos os dados OU extrato indica envio a terceiros</div>
+              <div class="escalation-cell">Equipe de Fraude</div>
+              <div class="escalation-cell">POP de Suspeita de Fraude · Informar: CAD-E-005, CPF, data da contratação, print do extrato</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- PIX INTELIGENTE -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="section" id="sec-pix">
+    <div class="section-header">
+      <div class="section-title">Pix Inteligente</div>
+      <div class="section-count">7 erros</div>
+    </div>
+
+    <!-- PIX-E-001 -->
+    <div class="error-card" id="PIX-E-001" data-title="App banco não funciona autorizar pix inteligente erro externo">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="card-id">PIX-E-001</span>
+        <div class="card-header-body">
+          <div class="card-title">App do banco não funciona para autorizar</div>
+          <div class="card-meta">App do banco (externo) · Frequência: Esporádico</div>
+        </div>
+        <div class="card-right">
+          <span class="sev-badge sev-media">Média</span>
+          <span class="chevron">▾</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-section-label">O que o usuário vê</div>
+          <div class="card-section-text">Ao clicar em "Confirmar e acessar [Banco]", o app do banco apresenta erro e não conclui a autorização do Pix Inteligente.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Passos</div>
+          <div class="steps">
+            <div class="step step-acao"><span class="step-num">1</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Informe que esse problema está fora do controle da Facio — é uma instabilidade no app do banco.</div></div>
+            <div class="step step-acao"><span class="step-num">2</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Oriente a tentar novamente mais tarde (aguardar pelo menos 30 minutos).</div></div>
+            <div class="step step-acao"><span class="step-num">3</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Sugira atualizar o app do banco para a versão mais recente.</div></div>
+            <div class="step step-obs"><span class="step-num">4</span><span class="step-icon">📝</span><div class="step-body"><span class="step-tag">Obs</span>Se persistir por mais de 24h, orientar o cliente a contatar o suporte do próprio banco.</div></div>
+          </div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Resultado esperado</div>
+          <div class="result-block">Cliente autoriza o Pix Inteligente após aguardar e/ou atualizar o app do banco.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Escalação</div>
+          <div class="no-escalation">Sem escalação prevista — orientar o cliente e registrar o atendimento.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PIX-E-002 -->
+    <div class="error-card" id="PIX-E-002" data-title="Erro ao processar conta facio">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="card-id">PIX-E-002</span>
+        <div class="card-header-body">
+          <div class="card-title">Erro ao processar a conta Facio</div>
+          <div class="card-meta">App Facio / QI Tech · Frequência: Esporádico</div>
+        </div>
+        <div class="card-right">
+          <span class="sev-badge sev-media">Média</span>
+          <span class="chevron">▾</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-section-label">O que o usuário vê</div>
+          <div class="card-section-text">Tela "Erro ao processar" durante a configuração da conta.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Passos</div>
+          <div class="steps">
+            <div class="step step-acao"><span class="step-num">1</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Oriente o cliente a fechar completamente o app da Facio (não só minimizar).</div></div>
+            <div class="step step-acao"><span class="step-num">2</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Aguardar alguns minutos antes de abrir novamente.</div></div>
+            <div class="step step-acao"><span class="step-num">3</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Tentar o processo de configuração novamente do início.</div></div>
+          </div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Resultado esperado</div>
+          <div class="result-block">Configuração concluída com sucesso após reiniciar o app e aguardar.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Escalação</div>
+          <div class="escalation">
+            <div class="escalation-row">
+              <div class="escalation-head">Quando escalar</div>
+              <div class="escalation-head">Para quem</div>
+              <div class="escalation-head">Canal / como</div>
+              <div class="escalation-cell">Erro persiste após 3 ou mais tentativas em momentos diferentes</div>
+              <div class="escalation-cell">N2 — Suporte Técnico</div>
+              <div class="escalation-cell">Canal interno · Informar: PIX-E-002, CPF, horários e print do erro</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PIX-E-003 -->
+    <div class="error-card" id="PIX-E-003" data-title="Conta pendente autorização não concluída banco">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="card-id">PIX-E-003</span>
+        <div class="card-header-body">
+          <div class="card-title">Conta pendente — autorização não concluída no banco</div>
+          <div class="card-meta">Retool / App Facio · Frequência: Comum</div>
+        </div>
+        <div class="card-right">
+          <span class="sev-badge sev-media">Média</span>
+          <span class="chevron">▾</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-section-label">O que o usuário vê</div>
+          <div class="card-section-text">Conta Facio aberta com sucesso na QI Tech, mas o cliente não concluiu a autorização no banco. Status: "Conta pendente".</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Passos</div>
+          <div class="steps">
+            <div class="step step-check"><span class="step-num">1</span><span class="step-icon">✓</span><div class="step-body"><span class="step-tag">Verificar</span>Confirme no Retool que o status é "conta pendente".</div></div>
+            <div class="step step-acao"><span class="step-num">2</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Oriente o cliente a acessar o app e concluir o processo de autorização no banco cadastrado.</div></div>
+            <div class="step step-check"><span class="step-num">3</span><span class="step-icon">✓</span><div class="step-body"><span class="step-tag">Verificar</span>Status atualizado para "Autorizada"? Se sim, concluído.</div></div>
+          </div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Resultado esperado</div>
+          <div class="result-block">Status atualizado para "Autorizada" após o cliente concluir a autorização no banco.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Escalação</div>
+          <div class="escalation">
+            <div class="escalation-row">
+              <div class="escalation-head">Quando escalar</div>
+              <div class="escalation-head">Para quem</div>
+              <div class="escalation-head">Canal / como</div>
+              <div class="escalation-cell">Status permanece "conta pendente" mesmo após o cliente concluir a autorização</div>
+              <div class="escalation-cell">@seniorops via Slack</div>
+              <div class="escalation-cell">Acionar @seniorops · Informar: PIX-E-003, CPF, print do status no Retool</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PIX-E-004 -->
+    <div class="error-card" id="PIX-E-004" data-title="Autorização pix inteligente rejeitada expirou">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="card-id">PIX-E-004</span>
+        <div class="card-header-body">
+          <div class="card-title">Autorização do Pix Inteligente rejeitada</div>
+          <div class="card-meta">App Facio / App do banco · Frequência: Frequente</div>
+        </div>
+        <div class="card-right">
+          <span class="sev-badge sev-media">Média</span>
+          <span class="chevron">▾</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-section-label">O que o usuário vê</div>
+          <div class="card-section-text">Cliente passou pelo fluxo mas a autorização não foi finalizada. Causas possíveis: abandono, prazo expirado, erro no banco ou erro genérico.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Passos</div>
+          <div class="steps">
+            <div class="step step-acao"><span class="step-num">1</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Oriente o cliente a atualizar o app do banco e o app da Facio.</div></div>
+            <div class="step step-acao"><span class="step-num">2</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Reiniciar o aparelho completamente.</div></div>
+            <div class="step step-acao"><span class="step-num">3</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Realizar nova tentativa pelo link: <code>https://m.facio.com.br/payment/pixInteligente?r=1</code></div></div>
+            <div class="step step-check"><span class="step-num">4</span><span class="step-icon">✓</span><div class="step-body"><span class="step-tag">Verificar</span>Autorização concluída? Se sim, concluído. Se não, escalar.</div></div>
+          </div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Resultado esperado</div>
+          <div class="result-block">Autorização concluída com sucesso após atualizar apps, reiniciar e tentar pelo link direto.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Escalação</div>
+          <div class="escalation">
+            <div class="escalation-row">
+              <div class="escalation-head">Quando escalar</div>
+              <div class="escalation-head">Para quem</div>
+              <div class="escalation-head">Canal / como</div>
+              <div class="escalation-cell">Autorização continua rejeitada após todas as tentativas</div>
+              <div class="escalation-cell">N2 — Suporte Técnico</div>
+              <div class="escalation-cell">Canal interno · Informar: PIX-E-004, CPF, versão dos apps e print do status</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PIX-E-005 -->
+    <div class="error-card" id="PIX-E-005" data-title="Tela carregamento aprovação travada presa">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="card-id">PIX-E-005</span>
+        <div class="card-header-body">
+          <div class="card-title">Cliente preso na tela de carregamento de aprovação</div>
+          <div class="card-meta">App Facio · Frequência: Esporádico</div>
+        </div>
+        <div class="card-right">
+          <span class="sev-badge sev-media">Média</span>
+          <span class="chevron">▾</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-section-label">O que o usuário vê</div>
+          <div class="card-section-text">Tela de aprovação da conta carregando indefinidamente sem avançar.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Passos</div>
+          <div class="steps">
+            <div class="step step-acao"><span class="step-num">1</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Oriente o cliente a <strong>manter a tela aberta sem sair do app</strong> por pelo menos 5 minutos.</div></div>
+            <div class="step step-check"><span class="step-num">2</span><span class="step-icon">✓</span><div class="step-body"><span class="step-tag">Verificar</span>Após 5 minutos a tela avançou? Se sim, concluído.</div></div>
+            <div class="step step-obs"><span class="step-num">3</span><span class="step-icon">📝</span><div class="step-body"><span class="step-tag">Obs</span>Se não avançar e o prazo de abertura de conta já tiver sido excedido, acionar @seniorops para reprocessamento.</div></div>
+          </div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Resultado esperado</div>
+          <div class="result-block">Tela avança após aguardar, ou conta é reprocessada pelo @seniorops.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Escalação</div>
+          <div class="escalation">
+            <div class="escalation-row">
+              <div class="escalation-head">Quando escalar</div>
+              <div class="escalation-head">Para quem</div>
+              <div class="escalation-head">Canal / como</div>
+              <div class="escalation-cell">Tela não avança após 5 minutos E prazo de abertura de conta já excedido</div>
+              <div class="escalation-cell">@seniorops via Slack</div>
+              <div class="escalation-cell">Acionar @seniorops · Informar: PIX-E-005, CPF, horário em que ficou preso e print</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PIX-E-006 -->
+    <div class="error-card" id="PIX-E-006" data-title="Conta reprovada negada QI Tech bank account rejected">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="card-id">PIX-E-006</span>
+        <div class="card-header-body">
+          <div class="card-title">Conta reprovada ou negada pela QI Tech</div>
+          <div class="card-meta">Retool · Frequência: Comum</div>
+        </div>
+        <div class="card-right">
+          <span class="sev-badge sev-alta">Alta</span>
+          <span class="chevron">▾</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-section-label">O que o usuário vê</div>
+          <div class="card-section-text">Abertura de conta reprovada. No Retool aparece como <code>Facio bank account rejected</code>. Cliente não consegue utilizar os serviços.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Passos</div>
+          <div class="steps">
+            <div class="step step-check"><span class="step-num">1</span><span class="step-icon">✓</span><div class="step-body"><span class="step-tag">Verificar</span>Confirme o status no Retool: <code>Facio bank account rejected</code>.</div></div>
+            <div class="step step-acao"><span class="step-num">2</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Informe ao cliente que a conta não pôde ser aprovada e que não é possível utilizar os serviços no momento.</div></div>
+            <div class="step step-acao"><span class="step-num">3</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Explique que não há possibilidade de retentiva, mesmo após 3 meses. O processo é automático.</div></div>
+            <div class="step step-acao"><span class="step-num">4</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Informe que, com o tempo, se o perfil de crédito melhorar, o cliente poderá receber uma nova oferta sem Transferência Automática.</div></div>
+          </div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Atenção</div>
+          <div class="alert-block"><strong>⚠ Não prometa prazos específicos nem reavaliações manuais.</strong> O processo de reanálise é automático e baseado no perfil de crédito.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Resultado esperado</div>
+          <div class="result-block">Cliente informado sobre a reprovação e perspectiva futura. Atendimento encerrado com orientação completa.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Escalação</div>
+          <div class="no-escalation">Sem escalação prevista — orientar o cliente e registrar o atendimento.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PIX-E-007 -->
+    <div class="error-card" id="PIX-E-007" data-title="Autorização pix inteligente revogada banco">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="card-id">PIX-E-007</span>
+        <div class="card-header-body">
+          <div class="card-title">Autorização do Pix Inteligente revogada</div>
+          <div class="card-meta">Retool / App do banco · Frequência: Esporádico</div>
+        </div>
+        <div class="card-right">
+          <span class="sev-badge sev-alta">Alta</span>
+          <span class="chevron">▾</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-section-label">O que o usuário vê</div>
+          <div class="card-section-text">Autorização do Pix Inteligente revogada no banco. Não é mais possível realizar transferências via Pix Inteligente.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Passos</div>
+          <div class="steps">
+            <div class="step step-check"><span class="step-num">1</span><span class="step-icon">✓</span><div class="step-body"><span class="step-tag">Verificar</span>Confirme o status no Retool como "Autorização revogada".</div></div>
+            <div class="step step-acao"><span class="step-num">2</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Informe que a autorização foi revogada e que não é mais possível realizar transferências via Pix Inteligente.</div></div>
+            <div class="step step-acao"><span class="step-num">3</span><span class="step-icon">▶</span><div class="step-body"><span class="step-tag">Ação</span>Oriente sobre os próximos passos conforme o produto ativo do cliente (ver POP correspondente).</div></div>
+          </div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Resultado esperado</div>
+          <div class="result-block">Cliente informado e orientado sobre as alternativas disponíveis conforme o produto ativo.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-section-label">Escalação</div>
+          <div class="escalation">
+            <div class="escalation-row">
+              <div class="escalation-head">Quando escalar</div>
+              <div class="escalation-head">Para quem</div>
+              <div class="escalation-head">Canal / como</div>
+              <div class="escalation-cell">Cliente quer reativar e não consegue pelo app · Dúvidas sobre impacto no produto ativo</div>
+              <div class="escalation-cell">N2 — Especialista de Produto</div>
+              <div class="escalation-cell">Canal interno · Informar: PIX-E-007, CPF, produto ativo e print do status</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="empty-state" class="empty" style="display:none;">Nenhum erro encontrado para essa busca.</div>
+
+</main>
+</div>
+
+<script>
+function toggle(header) {
+  const body = header.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  header.classList.toggle('open', !isOpen);
+  body.classList.toggle('open', !isOpen);
+}
+
+function filterErrors(query) {
+  const q = query.toLowerCase().trim();
+  const cards = document.querySelectorAll('.error-card');
+  let visible = 0;
+  cards.forEach(card => {
+    const text = (card.dataset.title + ' ' + card.id).toLowerCase();
+    const match = !q || text.includes(q);
+    card.classList.toggle('hidden', !match);
+    if (match) visible++;
+  });
+  document.getElementById('empty-state').style.display = visible === 0 ? 'block' : 'none';
+}
+
+// Highlight active sidebar item on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+      const link = document.querySelector(`.sidebar-item[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('.error-card').forEach(c => observer.observe(c));
+</script>
+</body>
+</html>
