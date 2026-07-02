@@ -6,20 +6,79 @@
 <title>Troubleshooting – Atendimento Facio</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── LIGHT MODE (padrão) ─────────────────────────────────────────────────── */
 :root {
-  --surface: #222222; --surface-2: #2A2A2A; --border: #383838; --border-strong: #484848;
-  --text: #ECECEA; --text-muted: #A0A09C; --text-faint: #686865;
-  --accent: #E05252; --accent-bg: #2E1818; --accent-border: #6A2828;
-  --ok-bg: #1A2E1C; --ok-border: #2A5230; --ok-text: #6EE7A0;
-  --info-bg: #1C2538; --info-border: #304880; --info-text: #93C5FD;
-  --warn-bg: #2A2414; --warn-border: #504418; --warn-text: #FDE68A;
-  --step-test: #1C2538; --step-test-b: #304880; --step-test-tag: #60A5FA;
-  --step-action: #1A2E1C; --step-action-b: #2A5230; --step-action-tag: #6EE7A0;
-  --step-check: #2A2414; --step-check-b: #504418; --step-check-tag: #FDE68A;
-  --step-obs: #2E2E2E; --step-obs-b: #484848; --step-obs-tag: #A0A09C;
+  --bg:            #F5F5F4;
+  --surface:       #FFFFFF;
+  --surface-2:     #F0EFED;
+  --border:        #E2E0DC;
+  --border-strong: #CCCAC5;
+  --text:          #1A1A18;
+  --text-muted:    #5C5C58;
+  --text-faint:    #9B9B97;
+  --accent:        #C0392B;
+  --accent-bg:     #FDF2F1;
+  --accent-border: #F5C0BB;
+  --ok-bg:         #F0FAF4;
+  --ok-border:     #A8DDB8;
+  --ok-text:       #1A6633;
+  --info-bg:       #F0F6FF;
+  --info-border:   #B0CEFF;
+  --info-text:     #1A3A80;
+  --warn-bg:       #FFFBF0;
+  --warn-border:   #F0D080;
+  --warn-text:     #7A5500;
+  --step-test:     #F0F6FF; --step-test-b:   #B0CEFF; --step-test-tag:  #1A3A80;
+  --step-action:   #F0FAF4; --step-action-b: #A8DDB8; --step-action-tag:#1A6633;
+  --step-check:    #FFFBF0; --step-check-b:  #F0D080; --step-check-tag: #7A5500;
+  --step-obs:      #F5F5F4; --step-obs-b:    #CCCAC5; --step-obs-tag:   #5C5C58;
+  --sev-alta-bg:   #FDF2F1; --sev-alta-text:  #8B1A1A;
+  --sev-media-bg:  #FFFBF0; --sev-media-text: #7A5500;
+  --sev-baixa-bg:  #F0FAF4; --sev-baixa-text: #1A6633;
+  --esc-head-bg:   #F5F5F4;
+  --no-esc-bg:     #F5F5F4;
+  --code-bg:       #F0EFED;
+  --modal-bg:      #FFFFFF;
+  --modal-input:   #F5F5F4;
+  --export-bg:     #1A1A1A;
   --radius: 8px; --radius-sm: 5px;
 }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; background: #1E1E1E; color: var(--text); font-size: 14px; line-height: 1.6; min-height: 100vh; }
+
+/* ── DARK MODE ────────────────────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:            #1E1E1E;
+    --surface:       #222222;
+    --surface-2:     #2A2A2A;
+    --border:        #383838;
+    --border-strong: #484848;
+    --text:          #ECECEA;
+    --text-muted:    #A0A09C;
+    --text-faint:    #686865;
+    --accent:        #E05252;
+    --accent-bg:     #2E1818;
+    --accent-border: #6A2828;
+    --ok-bg:         #1A2E1C; --ok-border:  #2A5230; --ok-text:   #6EE7A0;
+    --info-bg:       #1C2538; --info-border:#304880; --info-text: #93C5FD;
+    --warn-bg:       #2A2414; --warn-border:#504418; --warn-text: #FDE68A;
+    --step-test:     #1C2538; --step-test-b:#304880; --step-test-tag: #60A5FA;
+    --step-action:   #1A2E1C; --step-action-b:#2A5230; --step-action-tag:#6EE7A0;
+    --step-check:    #2A2414; --step-check-b:#504418; --step-check-tag:#FDE68A;
+    --step-obs:      #2E2E2E; --step-obs-b: #484848; --step-obs-tag:  #A0A09C;
+    --sev-alta-bg:   #3C1A1A; --sev-alta-text:  #FCA5A5;
+    --sev-media-bg:  #3D3210; --sev-media-text: #FDE68A;
+    --sev-baixa-bg:  #1A3820; --sev-baixa-text: #6EE7A0;
+    --esc-head-bg:   #252525;
+    --no-esc-bg:     #252525;
+    --code-bg:       #1A1A1A;
+    --modal-bg:      #242424;
+    --modal-input:   #1A1A1A;
+    --export-bg:     #111111;
+  }
+}
+
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; min-height: 100vh; }
 .layout { display: flex; min-height: 100vh; }
 
 /* SIDEBAR */
@@ -28,19 +87,23 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans
 .sidebar-brand-name { font-size: 13px; font-weight: 600; color: var(--text); }
 .sidebar-brand-sub { font-size: 11px; color: var(--text-faint); margin-top: 2px; }
 .sidebar-search { padding: 0 10px 12px; }
-.sidebar-search input { width: 100%; padding: 7px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 12px; color: var(--text); background: #1E1E1E; outline: none; font-family: inherit; }
+.sidebar-search input { width: 100%; padding: 7px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 12px; color: var(--text); background: var(--surface-2); outline: none; font-family: inherit; }
 .sidebar-search input:focus { border-color: var(--accent); }
 .sidebar-search input::placeholder { color: var(--text-faint); }
 .sidebar-section { padding: 0 10px 4px; }
 .sidebar-section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-faint); padding: 0 6px; margin-bottom: 3px; }
 .sidebar-item { display: flex; align-items: center; gap: 6px; padding: 5px 6px; border-radius: var(--radius-sm); cursor: pointer; text-decoration: none; color: var(--text-muted); font-size: 12px; transition: background 0.1s, color 0.1s; margin-bottom: 1px; }
-.sidebar-item:hover { background: #2A2A2A; color: var(--text); }
+.sidebar-item:hover { background: var(--surface-2); color: var(--text); }
 .sidebar-item.active { background: var(--accent-bg); color: var(--accent); font-weight: 500; }
 .sidebar-item .sev { margin-left: auto; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 3px; flex-shrink: 0; }
-.sev-alta  { background: #5C1A1A; color: #FCA5A5; }
-.sev-media { background: #3D3210; color: #FDE68A; }
-.sev-baixa { background: #1A3820; color: #6EE7A0; }
+.sev-alta  { background: var(--sev-alta-bg);  color: var(--sev-alta-text); }
+.sev-media { background: var(--sev-media-bg); color: var(--sev-media-text); }
+.sev-baixa { background: var(--sev-baixa-bg); color: var(--sev-baixa-text); }
 .sidebar-divider { height: 1px; background: var(--border); margin: 10px 10px; }
+.sidebar-filter { padding: 0 10px 10px; display: flex; gap: 4px; flex-wrap: wrap; }
+.filter-btn { padding: 3px 8px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); font-size: 11px; cursor: pointer; font-family: inherit; transition: all .15s; }
+.filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+.filter-btn.active-filter { background: var(--accent); border-color: var(--accent); color: #fff; }
 
 /* MAIN */
 .main { flex: 1; padding: 36px 44px; max-width: 860px; }
@@ -66,17 +129,20 @@ body.edit-mode .section-name-input { display: inline-block; }
 body.edit-mode .section-title { display: none; }
 .btn-del-section { padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border-strong); background: transparent; color: var(--text-faint); font-size: 11px; cursor: pointer; font-family: inherit; display: none; }
 body.edit-mode .btn-del-section { display: inline-block; }
-.btn-del-section:hover { border-color: var(--accent-border); color: #FCA5A5; background: var(--accent-bg); }
+.btn-del-section:hover { border-color: var(--accent-border); color: var(--accent); background: var(--accent-bg); }
 
 /* ERROR CARD */
 .error-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; scroll-margin-top: 24px; }
 .error-card.hidden { display: none; }
 .card-header { padding: 13px 15px; cursor: pointer; display: flex; align-items: flex-start; gap: 10px; user-select: none; transition: background 0.1s; }
 .card-header:hover { background: var(--surface-2); }
-.card-id { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 4px; padding: 2px 7px; flex-shrink: 0; margin-top: 1px; white-space: nowrap; }
+.card-id { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 4px; padding: 2px 7px; flex-shrink: 0; margin-top: 1px; white-space: nowrap; cursor: pointer; }
+.card-id:hover { opacity: 0.8; }
 .card-header-body { flex: 1; min-width: 0; }
 .card-title { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.4; }
 .card-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.card-updated { font-size: 11px; color: var(--text-faint); margin-top: 3px; display: flex; align-items: center; gap: 4px; }
+.card-updated-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ok-text); flex-shrink: 0; }
 .card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; flex-shrink: 0; }
 .sev-badge { font-size: 10px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; }
 .chevron { font-size: 12px; color: var(--text-faint); transition: transform 0.2s; }
@@ -88,14 +154,20 @@ body.edit-mode .btn-del-section { display: inline-block; }
 .card-section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 7px; }
 .card-section-text { font-size: 13px; color: var(--text); line-height: 1.65; }
 
+/* UPDATE HISTORY */
+.update-history { display: flex; flex-direction: column; gap: 6px; }
+.update-item { display: flex; gap: 10px; align-items: flex-start; font-size: 12px; }
+.update-date { color: var(--text-faint); white-space: nowrap; flex-shrink: 0; min-width: 80px; }
+.update-desc { color: var(--text-muted); }
+
 /* STEPS */
 .steps { display: flex; flex-direction: column; gap: 5px; }
 .step { display: flex; gap: 10px; align-items: flex-start; padding: 9px 11px; border-radius: var(--radius-sm); border-left: 3px solid transparent; font-size: 13px; line-height: 1.6; }
-.step-teste   { background: var(--step-test);   border-color: var(--step-test-b); }
-.step-acao    { background: var(--step-action); border-color: var(--step-action-b); }
-.step-check   { background: var(--step-check);  border-color: var(--step-check-b); }
-.step-obs     { background: var(--step-obs);    border-color: var(--step-obs-b); }
-.step-num { min-width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; background: rgba(0,0,0,0.2); color: var(--text); margin-top: 1px; }
+.step-teste  { background: var(--step-test);   border-color: var(--step-test-b); }
+.step-acao   { background: var(--step-action); border-color: var(--step-action-b); }
+.step-check  { background: var(--step-check);  border-color: var(--step-check-b); }
+.step-obs    { background: var(--step-obs);    border-color: var(--step-obs-b); }
+.step-num { min-width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; background: rgba(0,0,0,0.08); color: var(--text); margin-top: 1px; }
 .step-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
 .step-body { flex: 1; color: var(--text); }
 .step-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-right: 6px; }
@@ -106,24 +178,21 @@ body.edit-mode .btn-del-section { display: inline-block; }
 
 /* RESULT / ALERT */
 .result-block { background: var(--ok-bg); border: 1px solid var(--ok-border); border-radius: var(--radius-sm); padding: 10px 12px; font-size: 13px; color: var(--ok-text); line-height: 1.6; }
-.alert-block  { background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: var(--radius-sm); padding: 10px 12px; font-size: 13px; color: #FCA5A5; line-height: 1.6; }
+.alert-block  { background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: var(--radius-sm); padding: 10px 12px; font-size: 13px; color: var(--accent); line-height: 1.6; }
 .warn-block   { background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: var(--radius-sm); padding: 10px 12px; font-size: 13px; color: var(--warn-text); line-height: 1.6; }
 
 /* ESCALATION */
 .escalation-row { display: grid; grid-template-columns: 1fr 1fr 1fr; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
-.escalation-head { background: #252525; padding: 7px 10px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+.escalation-head { background: var(--esc-head-bg); padding: 7px 10px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); border-bottom: 1px solid var(--border); }
 .escalation-head + .escalation-head, .escalation-cell + .escalation-cell { border-left: 1px solid var(--border); }
 .escalation-cell { padding: 8px 10px; color: var(--text); font-size: 12px; line-height: 1.5; }
-.no-escalation { padding: 10px 12px; background: #252525; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 12px; color: var(--text-faint); font-style: italic; }
+.no-escalation { padding: 10px 12px; background: var(--no-esc-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 12px; color: var(--text-faint); font-style: italic; }
 
-/* EVIDENCE BLOCK */
+/* EVIDENCE */
 .evidence-block { margin-top: 10px; }
-.evidence-item { background: #1A1A1A; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 8px; }
+.evidence-item { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 8px; }
 .evidence-caption { font-size: 11px; color: var(--text-muted); padding: 6px 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 6px; }
-.evidence-caption span { flex: 1; }
-.evidence-img { width: 100%; display: block; max-height: 320px; object-fit: contain; background: #111; }
-.evidence-placeholder { padding: 28px 16px; text-align: center; color: var(--text-faint); font-size: 12px; }
-.evidence-placeholder-icon { font-size: 24px; margin-bottom: 4px; }
+.evidence-img { width: 100%; display: block; max-height: 320px; object-fit: contain; background: var(--surface-2); }
 .no-evidence { color: var(--text-faint); font-size: 12px; font-style: italic; }
 
 /* EDIT MODE */
@@ -135,7 +204,7 @@ body.edit-mode .card-body { display: block !important; }
 .btn-edit { padding: 3px 9px; border-radius: 4px; border: 1px solid var(--border-strong); background: transparent; color: var(--text-muted); font-size: 11px; cursor: pointer; font-family: inherit; }
 .btn-edit:hover { border-color: var(--info-border); color: var(--info-text); background: var(--info-bg); }
 .btn-del { padding: 3px 9px; border-radius: 4px; border: 1px solid var(--border-strong); background: transparent; color: var(--text-muted); font-size: 11px; cursor: pointer; font-family: inherit; }
-.btn-del:hover { border-color: var(--accent-border); color: #FCA5A5; background: var(--accent-bg); }
+.btn-del:hover { border-color: var(--accent-border); color: var(--accent); background: var(--accent-bg); }
 .add-error-btn { display: none; width: 100%; margin-top: 8px; padding: 10px; border: 1px dashed var(--border-strong); border-radius: var(--radius); background: transparent; color: var(--text-faint); font-size: 13px; cursor: pointer; font-family: inherit; }
 body.edit-mode .add-error-btn { display: block; }
 .add-error-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
@@ -145,64 +214,87 @@ body.edit-mode .add-section-btn { display: block; }
 
 /* EDIT BAR */
 .edit-mode-bar { position: fixed; bottom: 20px; right: 20px; z-index: 200; display: flex; gap: 8px; }
-.edit-toggle-btn { display: flex; align-items: center; gap: 7px; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--text-muted); font-size: 13px; cursor: pointer; font-family: inherit; }
+.edit-toggle-btn { display: flex; align-items: center; gap: 7px; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--text-muted); font-size: 13px; cursor: pointer; font-family: inherit; box-shadow: 0 2px 8px rgba(0,0,0,.1); }
 .edit-toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
 .edit-toggle-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-.export-btn { display: none; align-items: center; gap: 7px; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--ok-border); background: var(--ok-bg); color: var(--ok-text); font-size: 13px; cursor: pointer; font-family: inherit; }
+.export-btn { display: none; align-items: center; gap: 7px; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--ok-border); background: var(--ok-bg); color: var(--ok-text); font-size: 13px; cursor: pointer; font-family: inherit; box-shadow: 0 2px 8px rgba(0,0,0,.1); }
 .export-btn:hover { opacity: 0.85; }
 body.edit-mode .export-btn { display: flex; }
 
 /* MODAL */
-.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.75); z-index: 300; align-items: flex-start; justify-content: center; padding: 40px 20px; overflow-y: auto; }
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 300; align-items: flex-start; justify-content: center; padding: 40px 20px; overflow-y: auto; }
 .modal-overlay.open { display: flex; }
-.modal { background: #242424; border: 1px solid var(--border-strong); border-radius: 12px; width: 640px; max-width: 95vw; padding: 22px; margin-bottom: 40px; }
+.modal { background: var(--modal-bg); border: 1px solid var(--border-strong); border-radius: 12px; width: 640px; max-width: 95vw; padding: 22px; margin-bottom: 40px; }
 .modal-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
 .modal-title small { font-size: 12px; font-weight: 400; color: var(--text-faint); }
 .form-row { display: flex; gap: 10px; margin-bottom: 12px; }
 .form-group { display: flex; flex-direction: column; gap: 4px; flex: 1; }
 .form-group.w-auto { flex: 0 0 auto; }
 .form-label { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); }
-.form-input { padding: 7px 10px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: #1A1A1A; color: var(--text); font-size: 13px; font-family: inherit; outline: none; }
+.form-input { padding: 7px 10px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--modal-input); color: var(--text); font-size: 13px; font-family: inherit; outline: none; }
 .form-input:focus { border-color: var(--accent); }
-.form-textarea { padding: 7px 10px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: #1A1A1A; color: var(--text); font-size: 13px; font-family: inherit; outline: none; resize: vertical; min-height: 56px; }
+.form-textarea { padding: 7px 10px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--modal-input); color: var(--text); font-size: 13px; font-family: inherit; outline: none; resize: vertical; min-height: 56px; }
 .form-textarea:focus { border-color: var(--accent); }
-.form-select { padding: 7px 10px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: #1A1A1A; color: var(--text); font-size: 13px; font-family: inherit; outline: none; }
+.form-select { padding: 7px 10px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--modal-input); color: var(--text); font-size: 13px; font-family: inherit; outline: none; }
 .steps-editor { display: flex; flex-direction: column; gap: 5px; }
 .step-edit-row { display: flex; gap: 5px; align-items: flex-start; }
-.step-edit-row select { width: 105px; flex-shrink: 0; padding: 5px 7px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: #1A1A1A; color: var(--text); font-size: 12px; font-family: inherit; }
-.step-edit-row textarea { flex: 1; padding: 5px 7px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: #1A1A1A; color: var(--text); font-size: 12px; font-family: inherit; resize: vertical; min-height: 40px; }
+.step-edit-row select { width: 105px; flex-shrink: 0; padding: 5px 7px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--modal-input); color: var(--text); font-size: 12px; font-family: inherit; }
+.step-edit-row textarea { flex: 1; padding: 5px 7px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--modal-input); color: var(--text); font-size: 12px; font-family: inherit; resize: vertical; min-height: 40px; }
 .step-edit-row button { padding: 5px 8px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: transparent; color: var(--text-faint); cursor: pointer; font-size: 13px; }
-.step-edit-row button:hover { background: var(--accent-bg); color: #FCA5A5; }
+.step-edit-row button:hover { background: var(--accent-bg); color: var(--accent); }
 .add-step-btn { width: 100%; padding: 6px; border: 1px dashed var(--border-strong); border-radius: var(--radius-sm); background: transparent; color: var(--text-faint); font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 4px; }
 .add-step-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-/* EVIDENCE EDITOR */
+.update-editor { display: flex; flex-direction: column; gap: 5px; }
+.update-edit-row { display: flex; gap: 6px; align-items: center; }
+.update-edit-row input[type=date] { padding: 5px 7px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--modal-input); color: var(--text); font-size: 12px; font-family: inherit; width: 140px; flex-shrink: 0; }
+.update-edit-row input[type=text] { flex: 1; padding: 5px 7px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--modal-input); color: var(--text); font-size: 12px; font-family: inherit; }
+.update-edit-row button { padding: 5px 8px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: transparent; color: var(--text-faint); cursor: pointer; font-size: 13px; }
+.update-edit-row button:hover { background: var(--accent-bg); color: var(--accent); }
 .evidence-editor { display: flex; flex-direction: column; gap: 6px; }
-.evidence-edit-item { display: flex; align-items: center; gap: 6px; background: #1A1A1A; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 7px 10px; }
-.evidence-edit-item img { width: 48px; height: 36px; object-fit: cover; border-radius: 3px; flex-shrink: 0; background: #111; }
+.evidence-edit-item { display: flex; align-items: center; gap: 6px; background: var(--modal-input); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 7px 10px; }
+.evidence-edit-item img { width: 48px; height: 36px; object-fit: cover; border-radius: 3px; flex-shrink: 0; background: var(--surface-2); }
 .evidence-edit-item-info { flex: 1; min-width: 0; }
 .evidence-edit-item-name { font-size: 12px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.evidence-edit-item-caption { font-size: 11px; }
 .evidence-edit-item-caption input { background: transparent; border: none; border-bottom: 1px dashed var(--border-strong); color: var(--text-muted); font-size: 11px; font-family: inherit; outline: none; width: 100%; }
 .evidence-del-btn { padding: 3px 7px; border-radius: 3px; border: 1px solid var(--border); background: transparent; color: var(--text-faint); cursor: pointer; font-size: 12px; flex-shrink: 0; }
-.evidence-del-btn:hover { background: var(--accent-bg); color: #FCA5A5; }
+.evidence-del-btn:hover { background: var(--accent-bg); color: var(--accent); }
 .evidence-upload-area { border: 1px dashed var(--border-strong); border-radius: var(--radius-sm); padding: 14px; text-align: center; cursor: pointer; color: var(--text-faint); font-size: 12px; background: transparent; position: relative; }
 .evidence-upload-area:hover { border-color: var(--accent); color: var(--accent); }
 .evidence-upload-area input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
-
 .modal-footer { display: flex; gap: 8px; justify-content: flex-end; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); }
 .btn-cancel { padding: 7px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: transparent; color: var(--text-muted); font-size: 13px; cursor: pointer; font-family: inherit; }
-.btn-cancel:hover { background: #2A2A2A; }
+.btn-cancel:hover { background: var(--surface-2); }
 .btn-save { padding: 7px 20px; border-radius: var(--radius-sm); border: 1px solid var(--accent); background: var(--accent); color: #fff; font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; }
-.btn-save:hover { background: #C04040; }
+.btn-save:hover { opacity: 0.88; }
 
 /* EXPORT */
-.export-modal { background: #242424; border: 1px solid var(--border-strong); border-radius: 12px; width: 680px; max-width: 95vw; padding: 22px; margin-bottom: 40px; }
-.export-modal textarea { width: 100%; min-height: 260px; background: #111; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); color: #6EE7A0; font-size: 12px; font-family: 'SF Mono', 'Fira Code', monospace; padding: 10px; resize: vertical; }
+.export-modal { background: var(--modal-bg); border: 1px solid var(--border-strong); border-radius: 12px; width: 680px; max-width: 95vw; padding: 22px; margin-bottom: 40px; }
+.export-modal textarea { width: 100%; min-height: 260px; background: var(--export-bg); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); color: var(--ok-text); font-size: 12px; font-family: 'SF Mono','Fira Code',monospace; padding: 10px; resize: vertical; }
 .copy-btn { padding: 7px 18px; border-radius: var(--radius-sm); border: 1px solid var(--ok-border); background: var(--ok-bg); color: var(--ok-text); font-size: 13px; cursor: pointer; font-family: inherit; }
 .copy-btn:hover { opacity: 0.85; }
 .empty { text-align: center; padding: 56px 20px; color: var(--text-faint); font-size: 13px; }
-code { font-family: 'SF Mono','Fira Code',monospace; font-size: 12px; background: #1A1A1A; border: 1px solid var(--border); border-radius: 3px; padding: 1px 5px; color: var(--info-text); }
+code { font-family: 'SF Mono','Fira Code',monospace; font-size: 12px; background: var(--code-bg); border: 1px solid var(--border); border-radius: 3px; padding: 1px 5px; color: var(--info-text); }
+.copy-toast { position: fixed; bottom: 80px; right: 20px; background: var(--text); color: var(--surface); padding: 8px 14px; border-radius: 6px; font-size: 12px; z-index: 400; opacity: 0; transition: opacity .2s; pointer-events: none; }
+.copy-toast.show { opacity: 1; }
+
+/* PAINEL ÚLTIMAS ATUALIZAÇÕES */
+.recent-panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 28px; overflow: hidden; }
+.recent-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; }
+.recent-header-left { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--text-muted); letter-spacing: .04em; text-transform: uppercase; }
+.recent-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok-text); }
+.recent-toggle { font-size: 11px; color: var(--text-faint); transition: transform .2s; }
+.recent-toggle.open { transform: rotate(180deg); }
+.recent-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.recent-table th { padding: 7px 14px; text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-faint); background: var(--surface-2); border-bottom: 1px solid var(--border); }
+.recent-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); vertical-align: middle; line-height: 1.4; }
+.recent-table tr:last-child td { border-bottom: none; }
+.recent-table tr:hover td { background: var(--surface-2); }
+.recent-id { font-size: 11px; font-weight: 700; color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 3px; padding: 1px 6px; white-space: nowrap; cursor: pointer; }
+.recent-id:hover { opacity: .8; }
+.recent-title { color: var(--text); font-weight: 500; }
+.recent-date { white-space: nowrap; color: var(--text-faint); font-size: 11px; }
+.recent-desc { color: var(--text-muted); }
+.recent-theme { font-size: 10px; padding: 1px 6px; border-radius: 3px; background: var(--surface-2); border: 1px solid var(--border); color: var(--text-faint); white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -211,30 +303,48 @@ code { font-family: 'SF Mono','Fira Code',monospace; font-size: 12px; background
 <nav class="sidebar" id="sidebar">
   <div class="sidebar-brand">
     <div class="sidebar-brand-name">Facio · Base de Conhecimento</div>
-    <div class="sidebar-brand-sub">Troubleshooting – FACIO-TS-001</div>
+    <div class="sidebar-brand-sub">Troubleshooting – ATE-TS-001</div>
   </div>
   <div class="sidebar-search">
     <input type="text" id="search" placeholder="Buscar erro..." oninput="filterErrors(this.value)">
+  </div>
+  <div class="sidebar-filter">
+    <button class="filter-btn active-filter" onclick="filterBySev('all',this)">Todos</button>
+    <button class="filter-btn" onclick="filterBySev('Alta',this)">Alta</button>
+    <button class="filter-btn" onclick="filterBySev('Média',this)">Média</button>
+    <button class="filter-btn" onclick="filterBySev('Baixa',this)">Baixa</button>
   </div>
   <div id="sidebar-nav"></div>
 </nav>
 
 <main class="main">
   <div class="page-header">
-    <div class="page-eyebrow">Troubleshooting · FACIO-TS-001</div>
+    <div class="page-eyebrow">Troubleshooting · ATE-TS-001</div>
     <div class="page-title">Guia de Tratativas<br>Atendimento ao Usuário</div>
     <div class="page-meta">
       <span class="page-meta-item">Versão <strong>1.0</strong></span>
       <span class="page-meta-item">Revisão <strong>01/07/2026</strong></span>
-      <span class="page-meta-item">Status <strong style="color:#6EE7A0">✔ Ativo</strong></span>
+      <span class="page-meta-item">Status <strong style="color:var(--ok-text)">✔ Ativo</strong></span>
     </div>
   </div>
-  <div class="how-to-use"><strong>Como usar:</strong> Localize o ID do erro na barra lateral ou use a busca. Abra o card e siga os passos na ordem. Se nenhuma tratativa resolver, acione a escalação no final do card.</div>
+  <div class="how-to-use"><strong>Como usar:</strong> Localize o ID na barra lateral ou use a busca. Abra o card e siga os passos na ordem. Clique no ID para copiar. Se nenhuma tratativa resolver, acione a escalação no final do card.</div>
+  <div class="recent-panel" id="recent-panel">
+    <div class="recent-header" onclick="toggleRecent()">
+      <div class="recent-header-left"><div class="recent-dot"></div> Últimas atualizações</div>
+      <span class="recent-toggle open" id="recent-toggle">▾</span>
+    </div>
+    <div id="recent-body">
+      <table class="recent-table">
+        <thead><tr><th>Data</th><th>ID</th><th>Tema</th><th>Título</th><th>Descrição da alteração</th></tr></thead>
+        <tbody id="recent-tbody"></tbody>
+      </table>
+    </div>
+  </div>
   <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:#60A5FA"></div> Teste — verifique antes de agir</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#6EE7A0"></div> Ação — executa e pode alterar dados</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#FDE68A"></div> Verificar — confirme o resultado</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#686865"></div> Obs — contexto adicional</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--step-test-tag)"></div> Teste — verifique antes de agir</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--step-action-tag)"></div> Ação — executa e pode alterar dados</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--step-check-tag)"></div> Verificar — confirme o resultado</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--text-faint)"></div> Obs — contexto adicional</div>
   </div>
   <div id="sections-container"></div>
   <button class="add-section-btn" onclick="openAddSection()">+ Adicionar novo tema</button>
@@ -246,15 +356,14 @@ code { font-family: 'SF Mono','Fira Code',monospace; font-size: 12px; background
   <button class="export-btn" onclick="openExport()">↓ Exportar HTML</button>
   <button class="edit-toggle-btn" id="edit-btn" onclick="toggleEditMode()">✎ Modo edição</button>
 </div>
+<div class="copy-toast" id="copy-toast">ID copiado!</div>
 
 <!-- MODAL ERRO -->
 <div class="modal-overlay" id="error-modal">
   <div class="modal">
     <div class="modal-title" id="modal-title-el">Novo erro <small id="modal-subtitle"></small></div>
     <input type="hidden" id="m-sec-idx"><input type="hidden" id="m-err-idx">
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Título do erro</label><input class="form-input" id="m-titulo" placeholder="Ex: Falha na conexão Open Finance"></div>
-    </div>
+    <div class="form-row"><div class="form-group"><label class="form-label">Título do erro</label><input class="form-input" id="m-titulo" placeholder="Ex: Falha na conexão Open Finance"></div></div>
     <div class="form-row">
       <div class="form-group"><label class="form-label">Sistema / canal</label><input class="form-input" id="m-sistema" placeholder="Ex: Belvo · QI Tech"></div>
       <div class="form-group"><label class="form-label">Frequência</label><input class="form-input" id="m-freq" placeholder="Ex: Recorrente"></div>
@@ -262,26 +371,30 @@ code { font-family: 'SF Mono','Fira Code',monospace; font-size: 12px; background
         <select class="form-select" id="m-sev"><option value="Alta">Alta</option><option value="Média" selected>Média</option><option value="Baixa">Baixa</option></select>
       </div>
     </div>
-    <div class="form-row"><div class="form-group"><label class="form-label">O que o usuário vê (sintoma)</label><textarea class="form-textarea" id="m-sintoma" placeholder="Descreva o que aparece ou o que o cliente relata..."></textarea></div></div>
-    <div class="form-row"><div class="form-group"><label class="form-label">Causa raiz / hipótese</label><textarea class="form-textarea" id="m-causa" placeholder="Possíveis causas..."></textarea></div></div>
+    <div class="form-row"><div class="form-group"><label class="form-label">O que o usuário vê (sintoma)</label><textarea class="form-textarea" id="m-sintoma"></textarea></div></div>
+    <div class="form-row"><div class="form-group"><label class="form-label">Causa raiz / hipótese</label><textarea class="form-textarea" id="m-causa"></textarea></div></div>
     <div class="form-group" style="margin-bottom:12px">
       <label class="form-label">Passos de tratativa</label>
       <div class="steps-editor" id="m-steps"></div>
       <button class="add-step-btn" onclick="addStepField()">+ Adicionar passo</button>
     </div>
-    <div class="form-row"><div class="form-group"><label class="form-label">Resultado esperado</label><textarea class="form-textarea" id="m-resultado" placeholder="O que deve acontecer após a tratativa..."></textarea></div></div>
-    <div class="form-row"><div class="form-group"><label class="form-label">Quando escalar</label><input class="form-input" id="m-esc-quando" placeholder="Ex: Erro persiste após todas as tentativas"></div></div>
+    <div class="form-row"><div class="form-group"><label class="form-label">Resultado esperado</label><textarea class="form-textarea" id="m-resultado"></textarea></div></div>
+    <div class="form-row"><div class="form-group"><label class="form-label">Quando escalar</label><input class="form-input" id="m-esc-quando"></div></div>
     <div class="form-row">
-      <div class="form-group"><label class="form-label">Para quem</label><input class="form-input" id="m-esc-para" placeholder="Ex: N2 — Suporte Técnico"></div>
-      <div class="form-group"><label class="form-label">Canal / como</label><input class="form-input" id="m-esc-como" placeholder="Ex: Canal interno · ID, CPF, print"></div>
+      <div class="form-group"><label class="form-label">Para quem</label><input class="form-input" id="m-esc-para"></div>
+      <div class="form-group"><label class="form-label">Canal / como</label><input class="form-input" id="m-esc-como"></div>
     </div>
-    <!-- EVIDÊNCIAS -->
+    <div class="form-group" style="margin-bottom:12px">
+      <label class="form-label">Histórico de atualizações</label>
+      <div class="update-editor" id="m-updates"></div>
+      <button class="add-step-btn" onclick="addUpdateField()" style="margin-top:5px">+ Registrar atualização</button>
+    </div>
     <div class="form-group" style="margin-bottom:0">
       <label class="form-label">Evidências / prints</label>
       <div class="evidence-editor" id="m-evidences"></div>
       <div class="evidence-upload-area" style="margin-top:6px">
         <input type="file" accept="image/*" multiple onchange="handleEvidenceUpload(event)">
-        📎 Clique ou arraste imagens aqui para adicionar evidências
+        📎 Clique ou arraste imagens aqui
       </div>
     </div>
     <div class="modal-footer">
@@ -307,7 +420,7 @@ code { font-family: 'SF Mono','Fira Code',monospace; font-size: 12px; background
 <div class="modal-overlay" id="export-modal">
   <div class="export-modal">
     <div class="modal-title">Exportar HTML atualizado</div>
-    <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px">Copie e substitua o conteúdo do seu arquivo no GitHub. Imagens inseridas ficam salvas como base64 no HTML.</p>
+    <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px">Copie e substitua o conteúdo do arquivo no GitHub.</p>
     <textarea id="export-code" readonly></textarea>
     <div class="modal-footer">
       <button class="btn-cancel" onclick="closeExport()">Fechar</button>
@@ -317,169 +430,122 @@ code { font-family: 'SF Mono','Fira Code',monospace; font-size: 12px; background
 </div>
 
 <script>
-const TIPOS = ['TESTE','AÇÃO','VERIFICAR','OBS'];
-const STEP_ICONS = {TESTE:'🧪', AÇÃO:'▶', VERIFICAR:'✓', OBS:'📝'};
-const STEP_CSS = {TESTE:'step-teste', AÇÃO:'step-acao', VERIFICAR:'step-check', OBS:'step-obs'};
-const STEP_TAG_LABEL = {TESTE:'Teste', AÇÃO:'Ação', VERIFICAR:'Verificar', OBS:'Obs'};
-const SEV_CLASS = {Alta:'sev-alta', Média:'sev-media', Baixa:'sev-baixa'};
+const TIPOS=['TESTE','AÇÃO','VERIFICAR','OBS'];
+const STEP_ICONS={TESTE:'🧪',AÇÃO:'▶',VERIFICAR:'✓',OBS:'📝'};
+const STEP_CSS={TESTE:'step-teste',AÇÃO:'step-acao',VERIFICAR:'step-check',OBS:'step-obs'};
+const STEP_TAG_LABEL={TESTE:'Teste',AÇÃO:'Ação',VERIFICAR:'Verificar',OBS:'Obs'};
+const SEV_CSS={Alta:'sev-alta',Média:'sev-media',Baixa:'sev-baixa'};
 
-let tempEvidences = [];
-let editMode = false;
+let tempEvidences=[], editMode=false, currentSevFilter='all', currentSearchQ='';
 
-let sections = [
-  {id:'sec-cad', name:'Cadastro', errors:[
+function today(){return new Date().toISOString().slice(0,10);}
+function fmtDate(d){if(!d)return'';try{const[y,m,dd]=d.split('-');return`${dd}/${m}/${y}`;}catch{return d;}}
+
+let sections=[
+  {id:'sec-cad',name:'Cadastro',errors:[
     {id:'CAD-E-001',titulo:'Erro de sistema no cadastro',sistema:'Belvo / Cumbuca / navegador',freq:'Recorrente',sev:'Alta',
      sintoma:'Tela de erro na Belvo ou Cumbuca durante o cadastro, navegador retorna erro ou cliente não é redirecionado para o app do banco.',
      causa:'Incompatibilidade de navegador · Cache corrompido · Instabilidade na integração Belvo/Cumbuca · Falha de redirecionamento.',
      steps:[{tipo:'TESTE',texto:'Pergunte em qual etapa o erro ocorreu: Belvo, Cumbuca, navegador ou redirecionamento.'},{tipo:'AÇÃO',texto:'Oriente a fechar o navegador completamente, reiniciar o aparelho e tentar novamente.'},{tipo:'AÇÃO',texto:'Peça que acesse pelo Google Chrome — outros navegadores podem ter incompatibilidades.'},{tipo:'VERIFICAR',texto:'O cadastro avançou normalmente? Se sim, concluído. Se não, avance.'},{tipo:'OBS',texto:'Se persistir em múltiplos dispositivos, pode ser instabilidade da Belvo/Cumbuca. Consulte o canal de status.'}],
      resultado:'Cadastro avança normalmente pelo Chrome após reiniciar o aparelho.',
-     esc_quando:'Erro persiste em múltiplos dispositivos após todas as tratativas',esc_para:'N2 — Suporte Técnico',esc_como:'Canal interno · CAD-E-001, etapa do erro, navegador, print',evidences:[]},
+     esc_quando:'Erro persiste em múltiplos dispositivos após todas as tratativas',esc_para:'N2 — Suporte Técnico',esc_como:'Canal interno · CAD-E-001, etapa do erro, navegador, print',
+     updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
     {id:'CAD-E-002',titulo:'Código de acesso não recebido via WhatsApp',sistema:'WhatsApp / Plataforma de envio',freq:'Frequente',sev:'Média',
      sintoma:'Cliente informa que solicitou o código de acesso mas não recebeu nada no WhatsApp.',
      causa:'Canal incorreto (SMS ao invés de WhatsApp) · Acesso pelo WhatsApp Web · Número da Facio bloqueado pelo cliente.',
      steps:[{tipo:'TESTE',texto:'Confirme se o cliente solicitou pela opção WhatsApp — e não SMS.'},{tipo:'TESTE',texto:'Verifique se está acessando pelo celular. O código não é enviado para o WhatsApp Web.'},{tipo:'AÇÃO',texto:'Se no celular e não recebeu: oriente a reiniciar o aparelho e solicitar novamente.'},{tipo:'TESTE',texto:'Se ainda não chegar: verifique se bloqueou o número da Facio no WhatsApp.'},{tipo:'AÇÃO',texto:'Se bloqueado: oriente a desbloquear e solicitar o código novamente. Envie a imagem de apoio.'}],
      resultado:'Cliente recebe o código via WhatsApp no celular e acessa o cadastro normalmente.',
-     esc_quando:'',esc_para:'',esc_como:'',evidences:[]},
+     esc_quando:'',esc_para:'',esc_como:'',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
     {id:'CAD-E-003',titulo:'Número de telefone já em uso — cadastro ativo',sistema:'Retool',freq:'Esporádico',sev:'Média',
      sintoma:'Ao atualizar o telefone, o sistema indica que o número já está vinculado a outro cadastro ativo.',
      causa:'Número reutilizado por outro cliente sem desvinculação prévia.',
      steps:[{tipo:'AÇÃO',texto:'Informe ao cliente que o número está em uso por outro cadastro.'},{tipo:'TESTE',texto:'Pergunte se conhece a pessoa vinculada. Se sim: oriente essa pessoa a alterar o número. Se não: solicite outro número ao cliente.'}],
      resultado:'Número liberado pelo titular anterior ou cliente fornece número alternativo.',
-     esc_quando:'',esc_para:'',esc_como:'',evidences:[]},
+     esc_quando:'',esc_para:'',esc_como:'',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
     {id:'CAD-E-004',titulo:'Número de telefone já em uso — cadastro inativo',sistema:'Retool',freq:'Esporádico',sev:'Média',
-     sintoma:'O número desejado está vinculado a um cadastro inativo. O cliente não consegue utilizá-lo.',
+     sintoma:'O número desejado está vinculado a um cadastro inativo.',
      causa:'Cadastro antigo não excluído retém o número.',
      steps:[{tipo:'AÇÃO',texto:'Acesse o cadastro inativo vinculado ao número no Retool.'},{tipo:'AÇÃO',texto:'Altere o DDD do cadastro inativo para 01 e salve. Isso libera o número.'},{tipo:'OBS',texto:'Anote o ID do cadastro inativo que cedeu o número para rastreabilidade.'},{tipo:'AÇÃO',texto:'Marque o ID original como suspeita de fraude no Retool.'},{tipo:'AÇÃO',texto:'Oriente o cliente a realizar a alteração do número pelo app.'}],
      resultado:'Número liberado. Cliente consegue associá-lo ao próprio cadastro via app.',
-     esc_quando:'',esc_para:'',esc_como:'',evidences:[]},
+     esc_quando:'',esc_para:'',esc_como:'',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
     {id:'CAD-E-005',titulo:'Cliente não reconhece o produto contratado',sistema:'Retool',freq:'Esporádico',sev:'Alta',
      sintoma:'Cliente afirma não se lembrar ou não ter realizado a contratação do produto.',
      causa:'Esquecimento genuíno · Contratação por familiar · Fraude — uso indevido de dados por terceiro.',
      steps:[{tipo:'AÇÃO',texto:'Tranquilize o cliente — explique que vai verificar junto com ele.'},{tipo:'AÇÃO',texto:'Envie as informações principais: dados de cadastro, data da solicitação, vencimento, contrato e comprovante de depósito.'},{tipo:'VERIFICAR',texto:'Cliente reconheceu ao ver os dados? Se sim, retorne ao fluxo normal.'},{tipo:'TESTE',texto:'Se insistir: siga o artigo de Suspeita de Fraude. Solicite o extrato bancário do período.'},{tipo:'AÇÃO',texto:'Verifique: após receber o valor, ele foi enviado a terceiros? Esse é o principal indicador de fraude.'}],
      resultado:'Situação identificada como esquecimento (cliente reconhece) ou encaminhada como fraude.',
-     esc_quando:'Cliente insiste em não reconhecer OU extrato indica envio a terceiros',esc_para:'Equipe de Fraude',esc_como:'POP de Suspeita de Fraude · CAD-E-005, CPF, data da contratação, print do extrato',evidences:[]},
+     esc_quando:'Cliente insiste em não reconhecer OU extrato indica envio a terceiros',esc_para:'Equipe de Fraude',esc_como:'POP de Suspeita de Fraude · CAD-E-005, CPF, data, print do extrato',
+     updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
   ]},
-  {id:'sec-pix', name:'Pix Inteligente', errors:[
-    {id:'PIX-E-001',titulo:'App do banco não funciona para autorizar',sistema:'App do banco (externo)',freq:'Esporádico',sev:'Média',
-     sintoma:'Ao clicar em "Confirmar e acessar [Banco]", o app do banco apresenta erro e não conclui a autorização do Pix Inteligente.',
-     causa:'Instabilidade no app do banco — fora do controle da Facio.',
-     steps:[{tipo:'AÇÃO',texto:'Informe que o problema está fora do controle da Facio — instabilidade no app do banco.'},{tipo:'AÇÃO',texto:'Oriente a tentar novamente após pelo menos 30 minutos.'},{tipo:'AÇÃO',texto:'Sugira atualizar o app do banco para a versão mais recente.'},{tipo:'OBS',texto:'Se persistir por mais de 24h, orientar o cliente a contatar o suporte do próprio banco.'}],
-     resultado:'Cliente autoriza o Pix Inteligente após aguardar e/ou atualizar o app do banco.',
-     esc_quando:'',esc_para:'',esc_como:'',evidences:[]},
-    {id:'PIX-E-002',titulo:'Erro ao processar a conta Facio',sistema:'App Facio / QI Tech',freq:'Esporádico',sev:'Média',
-     sintoma:'Tela "Erro ao processar" durante a configuração da conta.',
-     causa:'Instabilidade temporária no processamento da conta.',
-     steps:[{tipo:'AÇÃO',texto:'Oriente o cliente a fechar completamente o app da Facio (não só minimizar).'},{tipo:'AÇÃO',texto:'Aguardar alguns minutos antes de abrir novamente.'},{tipo:'AÇÃO',texto:'Tentar o processo de configuração novamente do início.'}],
-     resultado:'Configuração concluída com sucesso após reiniciar o app e aguardar.',
-     esc_quando:'Erro persiste após 3 ou mais tentativas em momentos diferentes',esc_para:'N2 — Suporte Técnico',esc_como:'Canal interno · PIX-E-002, CPF, horários e print do erro',evidences:[]},
-    {id:'PIX-E-003',titulo:'Conta pendente — autorização não concluída no banco',sistema:'Retool / App Facio',freq:'Comum',sev:'Média',
-     sintoma:'Conta Facio aberta com sucesso na QI Tech, mas cliente não concluiu a autorização no banco. Status: "Conta pendente".',
-     causa:'Cliente não concluiu o fluxo de autorização no app do banco após abertura da conta.',
-     steps:[{tipo:'VERIFICAR',texto:'Confirme no Retool que o status é "conta pendente".'},{tipo:'AÇÃO',texto:'Oriente o cliente a acessar o app e concluir o processo de autorização no banco cadastrado.'},{tipo:'VERIFICAR',texto:'Status atualizado para "Autorizada"? Se sim, concluído.'}],
-     resultado:'Status atualizado para "Autorizada" após o cliente concluir a autorização no banco.',
-     esc_quando:'Status permanece "conta pendente" mesmo após o cliente concluir a autorização',esc_para:'@seniorops via Slack',esc_como:'Acionar @seniorops · PIX-E-003, CPF, print do status no Retool',evidences:[]},
-    {id:'PIX-E-004',titulo:'Autorização do Pix Inteligente rejeitada',sistema:'App Facio / App do banco',freq:'Frequente',sev:'Média',
-     sintoma:'Cliente passou pelo fluxo mas a autorização não foi finalizada. Causas: abandono, prazo expirado, erro no banco.',
-     causa:'Abandono do fluxo · Prazo expirado · Erro no app do banco.',
-     steps:[{tipo:'AÇÃO',texto:'Oriente o cliente a atualizar o app do banco e o app da Facio.'},{tipo:'AÇÃO',texto:'Reiniciar o aparelho completamente.'},{tipo:'AÇÃO',texto:'Realizar nova tentativa pelo link: https://m.facio.com.br/payment/pixInteligente?r=1'},{tipo:'VERIFICAR',texto:'Autorização concluída? Se sim, concluído. Se não, escalar.'}],
-     resultado:'Autorização concluída após atualizar apps, reiniciar e tentar pelo link direto.',
-     esc_quando:'Autorização continua rejeitada após todas as tentativas',esc_para:'N2 — Suporte Técnico',esc_como:'Canal interno · PIX-E-004, CPF, versão dos apps e print do status',evidences:[]},
-    {id:'PIX-E-005',titulo:'Cliente preso na tela de carregamento de aprovação',sistema:'App Facio',freq:'Esporádico',sev:'Média',
-     sintoma:'Tela de aprovação da conta carregando indefinidamente sem avançar.',
-     causa:'Processamento demorado · Prazo de abertura de conta excedido.',
-     steps:[{tipo:'AÇÃO',texto:'Oriente o cliente a manter a tela aberta sem sair do app por pelo menos 5 minutos.'},{tipo:'VERIFICAR',texto:'Após 5 minutos a tela avançou? Se sim, concluído.'},{tipo:'OBS',texto:'Se não avançar e o prazo de abertura de conta já tiver sido excedido, acionar @seniorops para reprocessamento.'}],
-     resultado:'Tela avança após aguardar, ou conta é reprocessada pelo @seniorops.',
-     esc_quando:'Tela não avança após 5 minutos E prazo de abertura de conta excedido',esc_para:'@seniorops via Slack',esc_como:'Acionar @seniorops · PIX-E-005, CPF, horário em que ficou preso e print',evidences:[]},
-    {id:'PIX-E-006',titulo:'Conta reprovada ou negada pela QI Tech',sistema:'Retool',freq:'Comum',sev:'Alta',
-     sintoma:'Abertura de conta reprovada. No Retool aparece como "Facio bank account rejected". Cliente não consegue utilizar os serviços.',
-     causa:'Reprovação automática pelos critérios de crédito da QI Tech.',
-     steps:[{tipo:'VERIFICAR',texto:'Confirme o status no Retool: Facio bank account rejected.'},{tipo:'AÇÃO',texto:'Informe ao cliente que a conta não pôde ser aprovada e que não é possível utilizar os serviços no momento.'},{tipo:'AÇÃO',texto:'Explique que não há possibilidade de retentiva, mesmo após 3 meses. O processo é automático.'},{tipo:'AÇÃO',texto:'Informe que, com o tempo, se o perfil de crédito melhorar, o cliente poderá receber uma nova oferta.'}],
-     resultado:'Cliente informado sobre a reprovação e perspectiva futura. Atendimento encerrado com orientação completa.',
-     esc_quando:'',esc_para:'',esc_como:'',evidences:[]},
-    {id:'PIX-E-007',titulo:'Autorização do Pix Inteligente revogada',sistema:'Retool / App do banco',freq:'Esporádico',sev:'Alta',
-     sintoma:'Autorização do Pix Inteligente revogada no banco. Não é mais possível realizar transferências via Pix Inteligente.',
-     causa:'Cliente revogou a autorização no app do banco.',
-     steps:[{tipo:'VERIFICAR',texto:'Confirme o status no Retool como "Autorização revogada".'},{tipo:'AÇÃO',texto:'Informe que a autorização foi revogada e que não é mais possível realizar transferências via Pix Inteligente.'},{tipo:'AÇÃO',texto:'Oriente sobre os próximos passos conforme o produto ativo do cliente (ver POP correspondente).'}],
-     resultado:'Cliente informado e orientado sobre as alternativas disponíveis conforme o produto ativo.',
-     esc_quando:'Cliente quer reativar e não consegue pelo app · Dúvidas sobre impacto no produto ativo',esc_para:'N2 — Especialista de Produto',esc_como:'Canal interno · PIX-E-007, CPF, produto ativo e print do status',evidences:[]},
+  {id:'sec-pix',name:'Pix Inteligente',errors:[
+    {id:'PIX-E-001',titulo:'App do banco não funciona para autorizar',sistema:'App do banco (externo)',freq:'Esporádico',sev:'Média',sintoma:'Ao clicar em "Confirmar e acessar [Banco]", o app do banco apresenta erro e não conclui a autorização do Pix Inteligente.',causa:'Instabilidade no app do banco — fora do controle da Facio.',steps:[{tipo:'AÇÃO',texto:'Informe que o problema está fora do controle da Facio — instabilidade no app do banco.'},{tipo:'AÇÃO',texto:'Oriente a tentar novamente após pelo menos 30 minutos.'},{tipo:'AÇÃO',texto:'Sugira atualizar o app do banco para a versão mais recente.'},{tipo:'OBS',texto:'Se persistir por mais de 24h, orientar o cliente a contatar o suporte do próprio banco.'}],resultado:'Cliente autoriza o Pix Inteligente após aguardar e/ou atualizar o app do banco.',esc_quando:'',esc_para:'',esc_como:'',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
+    {id:'PIX-E-002',titulo:'Erro ao processar a conta Facio',sistema:'App Facio / QI Tech',freq:'Esporádico',sev:'Média',sintoma:'Tela "Erro ao processar" durante a configuração da conta.',causa:'Instabilidade temporária no processamento da conta.',steps:[{tipo:'AÇÃO',texto:'Oriente o cliente a fechar completamente o app da Facio (não só minimizar).'},{tipo:'AÇÃO',texto:'Aguardar alguns minutos antes de abrir novamente.'},{tipo:'AÇÃO',texto:'Tentar o processo de configuração novamente do início.'}],resultado:'Configuração concluída com sucesso após reiniciar o app e aguardar.',esc_quando:'Erro persiste após 3 ou mais tentativas em momentos diferentes',esc_para:'N2 — Suporte Técnico',esc_como:'Canal interno · PIX-E-002, CPF, horários e print do erro',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
+    {id:'PIX-E-003',titulo:'Conta pendente — autorização não concluída no banco',sistema:'Retool / App Facio',freq:'Comum',sev:'Média',sintoma:'Conta Facio aberta com sucesso na QI Tech, mas cliente não concluiu a autorização no banco. Status: "Conta pendente".',causa:'Cliente não concluiu o fluxo de autorização no app do banco após abertura da conta.',steps:[{tipo:'VERIFICAR',texto:'Confirme no Retool que o status é "conta pendente".'},{tipo:'AÇÃO',texto:'Oriente o cliente a acessar o app e concluir o processo de autorização no banco cadastrado.'},{tipo:'VERIFICAR',texto:'Status atualizado para "Autorizada"? Se sim, concluído.'}],resultado:'Status atualizado para "Autorizada" após o cliente concluir a autorização no banco.',esc_quando:'Status permanece "conta pendente" mesmo após o cliente concluir a autorização',esc_para:'@seniorops via Slack',esc_como:'Acionar @seniorops · PIX-E-003, CPF, print do status no Retool',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
+    {id:'PIX-E-004',titulo:'Autorização do Pix Inteligente rejeitada',sistema:'App Facio / App do banco',freq:'Frequente',sev:'Média',sintoma:'Cliente passou pelo fluxo mas a autorização não foi finalizada.',causa:'Abandono do fluxo · Prazo expirado · Erro no app do banco.',steps:[{tipo:'AÇÃO',texto:'Oriente o cliente a atualizar o app do banco e o app da Facio.'},{tipo:'AÇÃO',texto:'Reiniciar o aparelho completamente.'},{tipo:'AÇÃO',texto:'Realizar nova tentativa pelo link: https://m.facio.com.br/payment/pixInteligente?r=1'},{tipo:'VERIFICAR',texto:'Autorização concluída? Se sim, concluído. Se não, escalar.'}],resultado:'Autorização concluída após atualizar apps, reiniciar e tentar pelo link direto.',esc_quando:'Autorização continua rejeitada após todas as tentativas',esc_para:'N2 — Suporte Técnico',esc_como:'Canal interno · PIX-E-004, CPF, versão dos apps e print do status',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
+    {id:'PIX-E-005',titulo:'Cliente preso na tela de carregamento de aprovação',sistema:'App Facio',freq:'Esporádico',sev:'Média',sintoma:'Tela de aprovação da conta carregando indefinidamente sem avançar.',causa:'Processamento demorado · Prazo de abertura de conta excedido.',steps:[{tipo:'AÇÃO',texto:'Oriente o cliente a manter a tela aberta sem sair do app por pelo menos 5 minutos.'},{tipo:'VERIFICAR',texto:'Após 5 minutos a tela avançou? Se sim, concluído.'},{tipo:'OBS',texto:'Se não avançar e o prazo de abertura de conta já tiver sido excedido, acionar @seniorops para reprocessamento.'}],resultado:'Tela avança após aguardar, ou conta é reprocessada pelo @seniorops.',esc_quando:'Tela não avança após 5 minutos E prazo de abertura de conta excedido',esc_para:'@seniorops via Slack',esc_como:'Acionar @seniorops · PIX-E-005, CPF, horário e print',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
+    {id:'PIX-E-006',titulo:'Conta reprovada ou negada pela QI Tech',sistema:'Retool',freq:'Comum',sev:'Alta',sintoma:'Abertura de conta reprovada. No Retool aparece como "Facio bank account rejected".',causa:'Reprovação automática pelos critérios de crédito da QI Tech.',steps:[{tipo:'VERIFICAR',texto:'Confirme o status no Retool: Facio bank account rejected.'},{tipo:'AÇÃO',texto:'Informe ao cliente que a conta não pôde ser aprovada e que não é possível utilizar os serviços no momento.'},{tipo:'AÇÃO',texto:'Explique que não há possibilidade de retentiva, mesmo após 3 meses. O processo é automático.'},{tipo:'AÇÃO',texto:'Informe que, com o tempo, se o perfil de crédito melhorar, o cliente poderá receber uma nova oferta.'}],resultado:'Cliente informado sobre a reprovação e perspectiva futura.',esc_quando:'',esc_para:'',esc_como:'',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
+    {id:'PIX-E-007',titulo:'Autorização do Pix Inteligente revogada',sistema:'Retool / App do banco',freq:'Esporádico',sev:'Alta',sintoma:'Autorização do Pix Inteligente revogada no banco. Não é mais possível realizar transferências via Pix Inteligente.',causa:'Cliente revogou a autorização no app do banco.',steps:[{tipo:'VERIFICAR',texto:'Confirme o status no Retool como "Autorização revogada".'},{tipo:'AÇÃO',texto:'Informe que a autorização foi revogada e que não é mais possível realizar transferências via Pix Inteligente.'},{tipo:'AÇÃO',texto:'Oriente sobre os próximos passos conforme o produto ativo do cliente (ver POP correspondente).'}],resultado:'Cliente informado e orientado sobre as alternativas disponíveis.',esc_quando:'Cliente quer reativar e não consegue pelo app · Dúvidas sobre impacto no produto ativo',esc_para:'N2 — Especialista de Produto',esc_como:'Canal interno · PIX-E-007, CPF, produto ativo e print do status',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
   ]},
-  {id:'sec-ct', name:'Crédito do Trabalhador (CT)', errors:[
-    {id:'CT-E-001',titulo:'Falha na conexão Open Finance',sistema:'Open Finance · App do banco · Belvo',freq:'Recorrente',sev:'Alta',
-     sintoma:'O cliente não consegue conectar o banco via Open Finance durante o fluxo de contratação do CT. A tela retorna erro ou a conexão não avança.',
-     causa:'App do banco desatualizado · Banco com instabilidade · Tipo de conta incompatível (poupança ou salário) · Necessidade de reinicialização do dispositivo.',
-     steps:[{tipo:'TESTE',texto:'Confirme se o app do banco está atualizado — oriente a verificar atualizações na loja de aplicativos.'},{tipo:'TESTE',texto:'Pergunte se o aparelho foi reiniciado recentemente. Oriente a reiniciar antes de nova tentativa.'},{tipo:'TESTE',texto:'Consulte o canal de Canais Críticos para verificar se o banco está com instabilidade ou fora do ar.'},{tipo:'VERIFICAR',texto:'Há instabilidade confirmada? Se sim, oriente a tentar novamente em até 24h.'},{tipo:'TESTE',texto:'Confirme o tipo de conta: deve ser Conta Corrente. Conta Poupança pode gerar erro; Conta Salário não é aceita.'},{tipo:'OBS',texto:'Se não conectar de primeira mesmo com tudo correto, oriente a aguardar 24h para a retentativa automática antes de escalar.'}],
-     resultado:'Cliente consegue conectar o banco via Open Finance e avança no fluxo de contratação.',
-     esc_quando:'Erro persiste após reinicialização, banco estável e tipo de conta correto',esc_para:'N2 — Suporte Técnico',esc_como:'Canal interno · CT-E-001, banco, tipo de conta, print do erro',evidences:[]},
-    {id:'CT-E-002',titulo:'Erro na assinatura ou documentos QI Tech',sistema:'QI Tech · Navegador',freq:'Frequente',sev:'Alta',
-     sintoma:'O cliente não consegue avançar na etapa de assinatura ou envio de documentos da QI Tech. A página trava, retorna erro ou o upload falha.',
-     causa:'Navegador incompatível (Safari no iPhone ou navegador nativo) · Foto do documento com baixa qualidade · Lente da câmera suja.',
-     steps:[{tipo:'AÇÃO',texto:'Oriente o cliente a usar o Google Chrome. Evitar Safari (iPhone) e navegadores nativos.'},{tipo:'VERIFICAR',texto:'O erro persiste no Chrome? Se sim, oriente a testar em outro navegador ou outro aparelho.'},{tipo:'AÇÃO',texto:'Oriente a reiniciar o celular antes de nova tentativa no Chrome.'},{tipo:'TESTE',texto:'Se o problema for na foto: oriente a tirar em local com iluminação natural, sem reflexo e com câmera limpa.'},{tipo:'OBS',texto:'Documento deve estar nítido e sem cortes. Limpar a lente antes de tentar novamente.'}],
-     resultado:'Cliente consegue assinar e enviar os documentos sem erro, avançando para a próxima etapa.',
-     esc_quando:'Erro persiste em múltiplos navegadores e aparelhos',esc_para:'N2 — Suporte Técnico',esc_como:'Canal interno · CT-E-002, navegador, aparelho, print do erro',evidences:[]},
-    {id:'CT-E-003',titulo:'Pix Inteligente com falha de manutenção ou conexão',sistema:'Pix Inteligente · App do banco',freq:'Esporádico',sev:'Média',
-     sintoma:'O Pix Inteligente do cliente apresenta falha de conexão ou não processa corretamente após a contratação.',
-     causa:'App do banco desatualizado · Instabilidade do banco · Necessidade de reinicialização.',
-     steps:[{tipo:'AÇÃO',texto:'Verificar se o app do banco está atualizado e reiniciar o aparelho (mesmo protocolo do Open Finance).'},{tipo:'TESTE',texto:'Verificar nos canais internos se o banco do cliente apresenta instabilidade no momento.'},{tipo:'VERIFICAR',texto:'Há instabilidade confirmada? Se sim, informar o cliente e orientar a aguardar normalização.'},{tipo:'OBS',texto:'Se não houver instabilidade e o problema persistir após reinicialização, escalar para investigação técnica.'}],
-     resultado:'Pix Inteligente opera normalmente após reinicialização e confirmação de estabilidade do banco.',
-     esc_quando:'Problema persiste com banco estável e app atualizado',esc_para:'N2 — Suporte Técnico',esc_como:'Canal interno · CT-E-003, banco do cliente, print do erro',evidences:[]},
-    {id:'CT-E-004',titulo:'Conta de pagamento presa em status pendente ou reprovada',sistema:'Retool · Sistema de pagamentos',freq:'Esporádico',sev:'Média',
-     sintoma:'O status da conta de pagamento fica preso em "pendente" ou "reprovada" por tempo superior ao esperado, sem atualização automática.',
-     causa:'Rotina automática de reprocessamento não executada · Status travado por falha sistêmica.',
-     steps:[{tipo:'TESTE',texto:'Verifique há quanto tempo o status está parado. Se menos de 48h, pode ainda estar dentro do prazo normal.'},{tipo:'OBS',texto:'Há uma rotina automática de reprocessamento diária. Se o caso tiver 2 dias ou mais, o ideal é aguardar — o reprocessamento pode já ter ocorrido.'},{tipo:'VERIFICAR',texto:'Já passaram 2 dias ou mais e o status não atualizou? Escalar para o Senior Ops realizar o reprocessamento.'},{tipo:'OBS',texto:'NÃO tente reprocessar manualmente sem autorização do Senior Ops.'}],
-     resultado:'Status da conta atualizado corretamente após reprocessamento pelo Senior Ops.',
-     esc_quando:'Status parado há 2 dias ou mais sem atualização',esc_para:'Senior Ops',esc_como:'Canal interno · CT-E-004, ID do cliente, status atual, tempo parado',evidences:[]},
-    {id:'CT-E-005',titulo:'Cliente contratou mas não recebeu o desembolso',sistema:'App Facio · Portal web',freq:'Esporádico',sev:'Alta',
-     sintoma:'O cliente afirma ter concluído a contratação do CT mas não recebeu o crédito na conta.',
-     causa:'Etapa de aceite do Termo do Pix Inteligente não concluída · Contrato não assinado · Versão antiga do app.',
-     steps:[{tipo:'TESTE',texto:'Verifique se o Termo do Pix Inteligente foi aceito pelo cliente no sistema.'},{tipo:'TESTE',texto:'Confirme se o contrato foi assinado. Se não, a contratação não foi concluída.'},{tipo:'OBS',texto:'Clientes com versões antigas do app podem não visualizar corretamente a etapa de aceite do Termo.'},{tipo:'AÇÃO',texto:'Se for versão antiga: solicite atualização do aplicativo.'},{tipo:'AÇÃO',texto:'Após atualizar, oriente o acesso pelo portal web: m.facio.com.br para concluir as etapas pendentes.'},{tipo:'VERIFICAR',texto:'Confirme se não existe nenhuma etapa pendente antes de escalar.'}],
-     resultado:'Todas as etapas concluídas (termo aceito e contrato assinado) e desembolso processado.',
-     esc_quando:'Todas as etapas confirmadas como concluídas e desembolso ainda não ocorreu',esc_para:'N2 — Atendimento Especialista / Senior Ops',esc_como:'Canal interno · CT-E-005, ID do cliente, print das etapas',evidences:[]},
-    {id:'CT-E-006',titulo:'Cancelamento manual de contrato CT',sistema:'Slack Workflow · QI Tech Painel',freq:'Esporádico',sev:'Média',
-     sintoma:'É necessário cancelar um contrato de CT manualmente, seja a pedido do cliente ou por erro operacional.',
-     causa:'Solicitação de cancelamento do cliente · Erro na contratação que exige reversão manual.',
-     steps:[{tipo:'OBS',texto:'Via Slack: acesse Slack › Workflow › Cancelar contrato CT › clique no ícone "iniciar".'},{tipo:'AÇÃO',texto:'Via Slack: preencha as informações do cliente no formulário do Workflow para identificação do contrato.'},{tipo:'AÇÃO',texto:'Via Slack: após clicar em "submit", comunique ao cliente que a solicitação foi realizada e que o status será atualizado em breve.'},{tipo:'OBS',texto:'Via QI Tech: acesse Operações > Crédito Estruturado. Insira o CPF no campo Número do Documento.'},{tipo:'TESTE',texto:'Via QI Tech: verifique se o status da operação NÃO está como "Desembolsado". Contratos desembolsados não podem ser cancelados por aqui.'},{tipo:'AÇÃO',texto:'Via QI Tech: se o status permitir, clique em Ações > Cancelar. Em caso de dúvida, use o Slack Workflow.'}],
-     resultado:'Cancelamento solicitado com sucesso e cliente informado sobre atualização do status.',
-     esc_quando:'Status "Desembolsado" impedindo cancelamento pela QI Tech',esc_para:'Senior Ops',esc_como:'Slack Workflow · Informar: CT-E-006, CPF, ID do contrato, motivo do cancelamento',evidences:[]},
+  {id:'sec-ct',name:'Crédito do Trabalhador (CT)',errors:[
+    {id:'CT-E-001',titulo:'Falha na conexão Open Finance',sistema:'Open Finance · App do banco · Belvo',freq:'Recorrente',sev:'Alta',sintoma:'O cliente não consegue conectar o banco via Open Finance durante o fluxo de contratação do CT.',causa:'App do banco desatualizado · Banco com instabilidade · Tipo de conta incompatível · Necessidade de reinicialização.',steps:[{tipo:'TESTE',texto:'Confirme se o app do banco está atualizado.'},{tipo:'TESTE',texto:'Oriente a reiniciar o aparelho antes de nova tentativa.'},{tipo:'TESTE',texto:'Consulte o canal de Canais Críticos para verificar instabilidade do banco.'},{tipo:'VERIFICAR',texto:'Há instabilidade confirmada? Se sim, oriente a tentar novamente em até 24h.'},{tipo:'TESTE',texto:'Confirme o tipo de conta: deve ser Conta Corrente. Conta Poupança pode gerar erro; Conta Salário não é aceita.'},{tipo:'OBS',texto:'Se não conectar de primeira, oriente a aguardar 24h para a retentativa automática antes de escalar.'}],resultado:'Cliente consegue conectar o banco via Open Finance e avança no fluxo.',esc_quando:'Erro persiste após reinicialização, banco estável e tipo de conta correto',esc_para:'N2 — Suporte Técnico',esc_como:'Canal interno · CT-E-001, banco, tipo de conta, print do erro',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
+    {id:'CT-E-002',titulo:'Erro na assinatura ou documentos QI Tech',sistema:'QI Tech · Navegador',freq:'Frequente',sev:'Alta',sintoma:'O cliente não consegue avançar na etapa de assinatura ou envio de documentos da QI Tech.',causa:'Navegador incompatível (Safari no iPhone ou nativo) · Foto do documento com baixa qualidade · Lente da câmera suja.',steps:[{tipo:'AÇÃO',texto:'Oriente o cliente a usar o Google Chrome. Evitar Safari (iPhone) e navegadores nativos.'},{tipo:'VERIFICAR',texto:'O erro persiste no Chrome? Se sim, oriente a testar em outro navegador ou outro aparelho.'},{tipo:'AÇÃO',texto:'Oriente a reiniciar o celular antes de nova tentativa no Chrome.'},{tipo:'TESTE',texto:'Se o problema for na foto: oriente a tirar em local com iluminação natural, sem reflexo e com câmera limpa.'},{tipo:'OBS',texto:'Documento deve estar nítido e sem cortes.'}],resultado:'Cliente consegue assinar e enviar os documentos sem erro.',esc_quando:'Erro persiste em múltiplos navegadores e aparelhos',esc_para:'N2 — Suporte Técnico',esc_como:'Canal interno · CT-E-002, navegador, aparelho, print do erro',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
+    {id:'CT-E-003',titulo:'Pix Inteligente com falha de manutenção ou conexão',sistema:'Pix Inteligente · App do banco',freq:'Esporádico',sev:'Média',sintoma:'O Pix Inteligente do cliente apresenta falha de conexão ou não processa corretamente após a contratação.',causa:'App do banco desatualizado · Instabilidade do banco · Necessidade de reinicialização.',steps:[{tipo:'AÇÃO',texto:'Verificar se o app do banco está atualizado e reiniciar o aparelho (mesmo protocolo do Open Finance).'},{tipo:'TESTE',texto:'Verificar nos canais internos se o banco do cliente apresenta instabilidade no momento.'},{tipo:'VERIFICAR',texto:'Há instabilidade confirmada? Se sim, informar o cliente e orientar a aguardar normalização.'},{tipo:'OBS',texto:'Se não houver instabilidade e o problema persistir após reinicialização, escalar para investigação técnica.'}],resultado:'Pix Inteligente opera normalmente após reinicialização e confirmação de estabilidade.',esc_quando:'Problema persiste com banco estável e app atualizado',esc_para:'N2 — Suporte Técnico',esc_como:'Canal interno · CT-E-003, banco do cliente, print do erro',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
+    {id:'CT-E-004',titulo:'Conta de pagamento presa em status pendente ou reprovada',sistema:'Retool · Sistema de pagamentos',freq:'Esporádico',sev:'Média',sintoma:'O status da conta de pagamento fica preso em "pendente" ou "reprovada" por tempo superior ao esperado.',causa:'Rotina automática de reprocessamento não executada · Status travado por falha sistêmica.',steps:[{tipo:'TESTE',texto:'Verifique há quanto tempo o status está parado. Se menos de 48h, pode ainda estar dentro do prazo normal.'},{tipo:'OBS',texto:'Há uma rotina automática de reprocessamento diária. Se o caso tiver 2 dias ou mais, o ideal é aguardar.'},{tipo:'VERIFICAR',texto:'Já passaram 2 dias ou mais e o status não atualizou? Escalar para o Senior Ops realizar o reprocessamento.'},{tipo:'OBS',texto:'NÃO tente reprocessar manualmente sem autorização do Senior Ops.'}],resultado:'Status da conta atualizado corretamente após reprocessamento pelo Senior Ops.',esc_quando:'Status parado há 2 dias ou mais sem atualização',esc_para:'Senior Ops',esc_como:'Canal interno · CT-E-004, ID do cliente, status atual, tempo parado',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
+    {id:'CT-E-005',titulo:'Cliente contratou mas não recebeu o desembolso',sistema:'App Facio · Portal web',freq:'Esporádico',sev:'Alta',sintoma:'O cliente afirma ter concluído a contratação do CT mas não recebeu o crédito na conta.',causa:'Etapa de aceite do Termo do Pix Inteligente não concluída · Contrato não assinado · Versão antiga do app.',steps:[{tipo:'TESTE',texto:'Verifique se o Termo do Pix Inteligente foi aceito pelo cliente no sistema.'},{tipo:'TESTE',texto:'Confirme se o contrato foi assinado. Se não, a contratação não foi concluída.'},{tipo:'OBS',texto:'Clientes com versões antigas do app podem não visualizar corretamente a etapa de aceite do Termo.'},{tipo:'AÇÃO',texto:'Se for versão antiga: solicite atualização do aplicativo.'},{tipo:'AÇÃO',texto:'Após atualizar, oriente o acesso pelo portal web: m.facio.com.br para concluir etapas pendentes.'},{tipo:'VERIFICAR',texto:'Confirme se não existe nenhuma etapa pendente antes de escalar.'}],resultado:'Todas as etapas concluídas e desembolso processado.',esc_quando:'Todas as etapas confirmadas como concluídas e desembolso ainda não ocorreu',esc_para:'N2 — Atendimento Especialista / Senior Ops',esc_como:'Canal interno · CT-E-005, ID do cliente, print das etapas',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
+    {id:'CT-E-006',titulo:'Cancelamento manual de contrato CT',sistema:'Slack Workflow · QI Tech Painel',freq:'Esporádico',sev:'Média',sintoma:'É necessário cancelar um contrato de CT manualmente, seja a pedido do cliente ou por erro operacional.',causa:'Solicitação de cancelamento do cliente · Erro na contratação que exige reversão manual.',steps:[{tipo:'OBS',texto:'Via Slack: acesse Slack › Workflow › Cancelar contrato CT › clique no ícone "iniciar".'},{tipo:'AÇÃO',texto:'Via Slack: preencha as informações do cliente no formulário do Workflow.'},{tipo:'AÇÃO',texto:'Via Slack: após "submit", comunique ao cliente que a solicitação foi realizada.'},{tipo:'OBS',texto:'Via QI Tech: acesse Operações > Crédito Estruturado. Insira o CPF no campo Número do Documento.'},{tipo:'TESTE',texto:'Via QI Tech: verifique se o status NÃO está como "Desembolsado". Contratos desembolsados não podem ser cancelados aqui.'},{tipo:'AÇÃO',texto:'Via QI Tech: se o status permitir, clique em Ações > Cancelar. Em caso de dúvida, use o Slack Workflow.'}],resultado:'Cancelamento solicitado com sucesso e cliente informado.',esc_quando:'Status "Desembolsado" impedindo cancelamento pela QI Tech',esc_para:'Senior Ops',esc_como:'Slack Workflow · CT-E-006, CPF, ID do contrato, motivo',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
   ]},
-  {id:'sec-cf', name:'Crédito Fácil (CF)', errors:[
-    {id:'CF-E-001',titulo:'Tela de erro genérico na contratação',sistema:'App Facio',freq:'Esporádico',sev:'Média',
-     sintoma:'Durante o fluxo de contratação do Crédito Fácil, o cliente se depara com uma tela de erro genérico sem mensagem específica.',
-     causa:'Instabilidade temporária · Cache do app · Versão desatualizada · Inconsistência cadastral.',
-     steps:[{tipo:'AÇÃO',texto:'Oriente o cliente a fechar completamente o app (não minimizar) e reabrir.'},{tipo:'AÇÃO',texto:'Verifique se o app da Facio está na versão mais recente. Se não, oriente a atualizar.'},{tipo:'AÇÃO',texto:'Reiniciar o aparelho completamente antes de nova tentativa.'},{tipo:'VERIFICAR',texto:'O erro persistiu após reiniciar? Se sim, avance para verificar possível inconsistência cadastral.'},{tipo:'TESTE',texto:'Verifique se há inconsistências cadastrais: dados de endereço incompletos (ex: logradouro não informado).'},{tipo:'AÇÃO',texto:'Se houver inconsistência: realize a troca de conta para reprocessamento. É possível recadastrar o mesmo banco se a Data de Conexão for superior a 7 dias.'}],
-     resultado:'Erro resolvido após reinicialização ou correção de inconsistência cadastral.',
-     esc_quando:'Erro persiste após todas as tratativas sem inconsistência identificada',esc_para:'N2 — Suporte Técnico',esc_como:'Canal interno · CF-E-001, CPF, versão do app, print do erro',evidences:[]},
-    {id:'CF-E-002',titulo:'Contratação negada — menor de idade ou inconsistência cadastral',sistema:'App Facio · CAF · Receita Federal',freq:'Esporádico',sev:'Alta',
-     sintoma:'Falha durante a contratação do Crédito Fácil. Pode indicar que o cliente é menor de idade ou possui inconsistência cadastral.',
-     causa:'Cliente menor de 18 anos tentando contratar produto indisponível para menores · Inconsistência no cadastro (ex: endereço incompleto, logradouro ausente).',
-     steps:[{tipo:'AÇÃO',texto:'Solicite o envio do link CAF para análise de identidade do cliente.'},{tipo:'AÇÃO',texto:'Valide a data de nascimento do cliente. Use a consulta da Receita Federal para conferir os dados do CPF.'},{tipo:'VERIFICAR',texto:'O cliente é menor de 18 anos? Se sim, siga o fluxo de menor de idade.'},{tipo:'AÇÃO',texto:'Se menor de idade: registre anotação no atendimento informando a validação realizada.'},{tipo:'AÇÃO',texto:'Se menor de idade: classifique o caso como Suspeita de Fraude conforme procedimento interno.'},{tipo:'AÇÃO',texto:'Se menor de idade: informe ao cliente que o Crédito Fácil não está disponível para menores de idade. Não há ação corretiva.'},{tipo:'TESTE',texto:'Se NÃO for menor de idade: verifique inconsistências cadastrais como ausência de dados no endereço.'},{tipo:'AÇÃO',texto:'Se houver inconsistência cadastral: realize a troca de conta para reprocessamento. É possível recadastrar o mesmo banco se a Data de Conexão for superior a 7 dias.'},{tipo:'OBS',texto:'Para ambos os cenários: não é necessária escalação via Oráculos ou abertura de Bug Report.'}],
-     resultado:'Situação identificada e tratada: menor de idade orientado e caso marcado como suspeita, ou inconsistência cadastral corrigida e reprocessamento solicitado.',
-     esc_quando:'Inconsistência cadastral não resolve após reprocessamento',esc_para:'N2 — Atendimento Especialista',esc_como:'Canal interno · CF-E-002, CPF, tipo de problema identificado, print',evidences:[]},
+  {id:'sec-cf',name:'Crédito Fácil (CF)',errors:[
+    {id:'CF-E-001',titulo:'Tela de erro genérico na contratação',sistema:'App Facio',freq:'Esporádico',sev:'Média',sintoma:'Durante o fluxo de contratação do Crédito Fácil, o cliente se depara com uma tela de erro genérico sem mensagem específica.',causa:'Instabilidade temporária · Cache do app · Versão desatualizada · Inconsistência cadastral.',steps:[{tipo:'AÇÃO',texto:'Oriente o cliente a fechar completamente o app (não minimizar) e reabrir.'},{tipo:'AÇÃO',texto:'Verifique se o app da Facio está na versão mais recente. Se não, oriente a atualizar.'},{tipo:'AÇÃO',texto:'Reiniciar o aparelho completamente antes de nova tentativa.'},{tipo:'VERIFICAR',texto:'O erro persistiu após reiniciar? Se sim, avance para verificar possível inconsistência cadastral.'},{tipo:'TESTE',texto:'Verifique se há inconsistências cadastrais: dados de endereço incompletos (ex: logradouro não informado).'},{tipo:'AÇÃO',texto:'Se houver inconsistência: realize a troca de conta para reprocessamento. É possível recadastrar o mesmo banco se a Data de Conexão for superior a 7 dias.'}],resultado:'Erro resolvido após reinicialização ou correção de inconsistência cadastral.',esc_quando:'Erro persiste após todas as tratativas sem inconsistência identificada',esc_para:'N2 — Suporte Técnico',esc_como:'Canal interno · CF-E-001, CPF, versão do app, print do erro',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
+    {id:'CF-E-002',titulo:'Contratação negada — menor de idade ou inconsistência cadastral',sistema:'App Facio · CAF · Receita Federal',freq:'Esporádico',sev:'Alta',sintoma:'Falha durante a contratação do Crédito Fácil. Pode indicar que o cliente é menor de idade ou possui inconsistência cadastral.',causa:'Cliente menor de 18 anos tentando contratar produto indisponível para menores · Inconsistência no cadastro.',steps:[{tipo:'AÇÃO',texto:'Solicite o envio do link CAF para análise de identidade do cliente.'},{tipo:'AÇÃO',texto:'Valide a data de nascimento do cliente. Use a consulta da Receita Federal para conferir os dados do CPF.'},{tipo:'VERIFICAR',texto:'O cliente é menor de 18 anos? Se sim, siga o fluxo de menor de idade.'},{tipo:'AÇÃO',texto:'Se menor de idade: registre anotação no atendimento informando a validação realizada.'},{tipo:'AÇÃO',texto:'Se menor de idade: classifique o caso como Suspeita de Fraude conforme procedimento interno.'},{tipo:'AÇÃO',texto:'Se menor de idade: informe ao cliente que o Crédito Fácil não está disponível para menores de idade. Não há ação corretiva.'},{tipo:'TESTE',texto:'Se NÃO for menor de idade: verifique inconsistências cadastrais como ausência de dados no endereço.'},{tipo:'AÇÃO',texto:'Se houver inconsistência cadastral: realize a troca de conta para reprocessamento. É possível recadastrar o mesmo banco se a Data de Conexão for superior a 7 dias.'},{tipo:'OBS',texto:'Para ambos os cenários: não é necessária escalação via Oráculos ou abertura de Bug Report.'}],resultado:'Situação identificada e tratada: menor orientado e marcado como suspeita, ou inconsistência cadastral corrigida.',esc_quando:'Inconsistência cadastral não resolve após reprocessamento',esc_para:'N2 — Atendimento Especialista',esc_como:'Canal interno · CF-E-002, CPF, tipo de problema, print',updates:[{date:'2026-07-01',desc:'Criação do documento'}],evidences:[]},
   ]}
 ];
 
-function genErrorId(si) {
-  const sec = sections[si];
-  const prefix = sec.name.includes('Pix') ? 'PIX' :
-                 sec.name.includes('CT') || sec.name.includes('Trabalhador') ? 'CT' :
-                 sec.name.includes('CF') || sec.name.includes('Fácil') ? 'CF' :
-                 sec.name.substring(0,3).toUpperCase().replace(/\s/g,'');
-  return `${prefix}-E-${String(sec.errors.length+1).padStart(3,'0')}`;
+function genErrorId(si){const sec=sections[si];const prefix=sec.name.includes('Pix')?'PIX':sec.name.includes('CT')||sec.name.includes('Trabalhador')?'CT':sec.name.includes('CF')||sec.name.includes('Fácil')?'CF':sec.name.substring(0,3).toUpperCase().replace(/\s/g,'');return`${prefix}-E-${String(sec.errors.length+1).padStart(3,'0')}`;}
+function renderAll(){renderSections();renderSidebar();renderRecent();}
+
+function renderRecent(){
+  const rows=[];
+  sections.forEach(sec=>{
+    sec.errors.forEach(e=>{
+      (e.updates||[]).forEach(u=>{
+        rows.push({date:u.date,desc:u.desc,id:e.id,titulo:e.titulo,tema:sec.name});
+      });
+    });
+  });
+  rows.sort((a,b)=>b.date.localeCompare(a.date));
+  const top=rows.slice(0,15);
+  const tbody=document.getElementById('recent-tbody');
+  if(!tbody)return;
+  tbody.innerHTML=top.length===0
+    ?`<tr><td colspan="5" style="text-align:center;color:var(--text-faint);font-style:italic;padding:16px">Nenhuma atualização registrada ainda.</td></tr>`
+    :top.map(r=>`
+      <tr>
+        <td class="recent-date">${fmtDate(r.date)}</td>
+        <td><span class="recent-id" onclick="copyId('${r.id}')" title="Copiar ID">${r.id}</span></td>
+        <td><span class="recent-theme">${r.tema}</span></td>
+        <td class="recent-title">${r.titulo}</td>
+        <td class="recent-desc">${r.desc}</td>
+      </tr>`).join('');
 }
 
-function renderAll() { renderSections(); renderSidebar(); }
+function toggleRecent(){
+  const body=document.getElementById('recent-body');
+  const tog=document.getElementById('recent-toggle');
+  const open=body.style.display!=='none';
+  body.style.display=open?'none':'block';
+  tog.classList.toggle('open',!open);
+}
 
-function renderSidebar() {
-  document.getElementById('sidebar-nav').innerHTML = sections.map((sec,si) => `
+function renderSidebar(){
+  document.getElementById('sidebar-nav').innerHTML=sections.map((sec,si)=>`
     <div class="sidebar-section">
       <div class="sidebar-section-label">${sec.name}</div>
-      ${sec.errors.map(e => `<a class="sidebar-item" href="#${e.id}">${e.id} <span class="sev sev-${e.sev==='Alta'?'alta':e.sev==='Média'?'media':'baixa'}">${e.sev}</span></a>`).join('')}
+      ${sec.errors.filter(e=>currentSevFilter==='all'||e.sev===currentSevFilter).map(e=>`<a class="sidebar-item" href="#${e.id}">${e.id} <span class="sev sev-${e.sev==='Alta'?'alta':e.sev==='Média'?'media':'baixa'}">${e.sev}</span></a>`).join('')}
     </div>
-    ${si < sections.length-1 ? '<div class="sidebar-divider"></div>' : ''}
-  `).join('');
+    ${si<sections.length-1?'<div class="sidebar-divider"></div>':''}`).join('');
 }
 
-function renderSections() {
-  document.getElementById('sections-container').innerHTML = sections.map((sec,si) => `
+function renderSections(){
+  document.getElementById('sections-container').innerHTML=sections.map((sec,si)=>`
     <div class="section" id="${sec.id}">
       <div class="section-header">
         <div class="section-title-wrap">
@@ -489,38 +555,41 @@ function renderSections() {
         </div>
         <div class="section-count">${sec.errors.length} ${sec.errors.length===1?'erro':'erros'}</div>
       </div>
-      ${sec.errors.map((e,ei) => renderCard(e,si,ei)).join('')}
+      ${sec.errors.map((e,ei)=>renderCard(e,si,ei)).join('')}
       <button class="add-error-btn" onclick="openAddError(${si})">+ Adicionar erro em "${sec.name}"</button>
     </div>`).join('');
 }
 
-function renderCard(e, si, ei) {
-  const esc = e.esc_quando
-    ? `<div class="escalation-row">
-        <div class="escalation-head">Quando escalar</div><div class="escalation-head">Para quem</div><div class="escalation-head">Canal / como</div>
-        <div class="escalation-cell">${e.esc_quando}</div><div class="escalation-cell">${e.esc_para}</div><div class="escalation-cell">${e.esc_como}</div>
-       </div>`
-    : `<div class="no-escalation">Sem escalação prevista — orientar o cliente e registrar o atendimento.</div>`;
+function renderCard(e,si,ei){
+  const esc=e.esc_quando
+    ?`<div class="escalation-row"><div class="escalation-head">Quando escalar</div><div class="escalation-head">Para quem</div><div class="escalation-head">Canal / como</div><div class="escalation-cell">${e.esc_quando}</div><div class="escalation-cell">${e.esc_para}</div><div class="escalation-cell">${e.esc_como}</div></div>`
+    :`<div class="no-escalation">Sem escalação prevista — orientar o cliente e registrar o atendimento.</div>`;
 
-  const evBlock = e.evidences && e.evidences.length > 0
-    ? `<div class="evidence-block">${e.evidences.map(ev =>
-        `<div class="evidence-item">
-          <div class="evidence-caption">📸 <span>${ev.caption||'Evidência'}</span></div>
-          <img class="evidence-img" src="${ev.data}" alt="${ev.caption||'Evidência'}">
-        </div>`).join('')}</div>`
-    : `<div class="no-evidence">Nenhuma evidência adicionada</div>`;
+  const evBlock=e.evidences&&e.evidences.length>0
+    ?`<div class="evidence-block">${e.evidences.map(ev=>`<div class="evidence-item"><div class="evidence-caption">📸 <span>${ev.caption||'Evidência'}</span></div><img class="evidence-img" src="${ev.data}" alt="${ev.caption||''}"></div>`).join('')}</div>`
+    :`<div class="no-evidence">Nenhuma evidência adicionada</div>`;
 
-  return `<div class="error-card" id="${e.id}" data-title="${e.id.toLowerCase()} ${e.titulo.toLowerCase()} ${e.sistema.toLowerCase()}">
+  const lastUpdate=e.updates&&e.updates.length>0?e.updates[e.updates.length-1]:null;
+  const updatedBadge=lastUpdate?`<div class="card-updated"><div class="card-updated-dot"></div>Atualizado em ${fmtDate(lastUpdate.date)} — ${lastUpdate.desc}</div>`:'';
+
+  const updHistory=e.updates&&e.updates.length>0
+    ?`<div class="update-history">${e.updates.map(u=>`<div class="update-item"><span class="update-date">${fmtDate(u.date)}</span><span class="update-desc">${u.desc}</span></div>`).join('')}</div>`
+    :`<div class="no-evidence">Nenhuma atualização registrada</div>`;
+
+  const hidden=(currentSevFilter!=='all'&&e.sev!==currentSevFilter)||(currentSearchQ&&!(`${e.id} ${e.titulo} ${e.sistema}`).toLowerCase().includes(currentSearchQ))?'hidden':'';
+
+  return`<div class="error-card ${hidden}" id="${e.id}" data-title="${e.id.toLowerCase()} ${e.titulo.toLowerCase()} ${e.sistema.toLowerCase()}" data-sev="${e.sev}">
     <div class="card-header" onclick="toggleCard(this)">
-      <span class="card-id">${e.id}</span>
+      <span class="card-id" onclick="event.stopPropagation();copyId('${e.id}')" title="Clique para copiar o ID">${e.id}</span>
       <div class="card-header-body">
         <div class="card-title">${e.titulo}</div>
         <div class="card-meta">${e.sistema} · Frequência: ${e.freq}</div>
+        ${updatedBadge}
       </div>
       <div class="card-right">
         <div class="card-edit-actions">
           <button class="btn-edit" onclick="event.stopPropagation();openEditError(${si},${ei})">✎ Editar</button>
-          <button class="btn-del"  onclick="event.stopPropagation();deleteError(${si},${ei})">✕ Remover</button>
+          <button class="btn-del" onclick="event.stopPropagation();deleteError(${si},${ei})">✕ Remover</button>
         </div>
         <span class="sev-badge sev-${e.sev==='Alta'?'alta':e.sev==='Média'?'media':'baixa'}">${e.sev}</span>
         <span class="chevron">▾</span>
@@ -529,37 +598,35 @@ function renderCard(e, si, ei) {
     <div class="card-body">
       ${e.sintoma?`<div class="card-section"><div class="card-section-label">O que o usuário vê</div><div class="card-section-text">${e.sintoma}</div></div>`:''}
       ${e.causa?`<div class="card-section"><div class="card-section-label">Causa raiz / hipótese</div><div class="card-section-text">${e.causa}</div></div>`:''}
-      <div class="card-section"><div class="card-section-label">Passos</div>
-        <div class="steps">${e.steps.map((s,i)=>`<div class="step ${STEP_CSS[s.tipo]}"><span class="step-num">${i+1}</span><span class="step-icon">${STEP_ICONS[s.tipo]}</span><div class="step-body"><span class="step-tag">${STEP_TAG_LABEL[s.tipo]}</span>${s.texto}</div></div>`).join('')}</div>
-      </div>
+      <div class="card-section"><div class="card-section-label">Passos</div><div class="steps">${e.steps.map((s,i)=>`<div class="step ${STEP_CSS[s.tipo]}"><span class="step-num">${i+1}</span><span class="step-icon">${STEP_ICONS[s.tipo]}</span><div class="step-body"><span class="step-tag">${STEP_TAG_LABEL[s.tipo]}</span>${s.texto}</div></div>`).join('')}</div></div>
       <div class="card-section"><div class="card-section-label">Resultado esperado</div><div class="result-block">${e.resultado}</div></div>
       <div class="card-section"><div class="card-section-label">Evidências</div>${evBlock}</div>
+      <div class="card-section"><div class="card-section-label">Histórico de atualizações</div>${updHistory}</div>
       <div class="card-section"><div class="card-section-label">Escalação</div>${esc}</div>
     </div>
   </div>`;
 }
 
-function toggleCard(h) { if(editMode)return; const b=h.nextElementSibling; const o=b.classList.contains('open'); h.classList.toggle('open',!o); b.classList.toggle('open',!o); }
-
-function toggleEditMode() {
-  editMode=!editMode;
-  document.body.classList.toggle('edit-mode',editMode);
-  document.getElementById('edit-btn').classList.toggle('active',editMode);
-  document.getElementById('edit-btn').textContent=editMode?'✓ Sair da edição':'✎ Modo edição';
+function copyId(id){
+  navigator.clipboard.writeText(id).catch(()=>{const t=document.createElement('textarea');t.value=id;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);});
+  const toast=document.getElementById('copy-toast');toast.textContent=`${id} copiado!`;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800);
 }
 
-function deleteSection(si) { if(!confirm(`Remover "${sections[si].name}" e todos os erros?`))return; sections.splice(si,1); renderAll(); }
-function deleteError(si,ei) { if(!confirm(`Remover "${sections[si].errors[ei].titulo}"?`))return; sections[si].errors.splice(ei,1); renderAll(); }
+function toggleCard(h){if(editMode)return;const b=h.nextElementSibling;const o=b.classList.contains('open');h.classList.toggle('open',!o);b.classList.toggle('open',!o);}
+function toggleEditMode(){editMode=!editMode;document.body.classList.toggle('edit-mode',editMode);document.getElementById('edit-btn').classList.toggle('active',editMode);document.getElementById('edit-btn').textContent=editMode?'✓ Sair da edição':'✎ Modo edição';}
+function deleteSection(si){if(!confirm(`Remover "${sections[si].name}" e todos os erros?`))return;sections.splice(si,1);renderAll();}
+function deleteError(si,ei){if(!confirm(`Remover "${sections[si].errors[ei].titulo}"?`))return;sections[si].errors.splice(ei,1);renderAll();}
 
-function openAddError(si) {
+function openAddError(si){
   clearModal();
   document.getElementById('m-sec-idx').value=si;
   document.getElementById('m-err-idx').value='';
   document.getElementById('modal-title-el').innerHTML=`Novo erro <small>em "${sections[si].name}"</small>`;
+  addUpdateField({date:today(),desc:'Criação do erro'});
   document.getElementById('error-modal').classList.add('open');
 }
 
-function openEditError(si,ei) {
+function openEditError(si,ei){
   const e=sections[si].errors[ei];
   document.getElementById('m-sec-idx').value=si;
   document.getElementById('m-err-idx').value=ei;
@@ -576,118 +643,81 @@ function openEditError(si,ei) {
   document.getElementById('m-esc-como').value=e.esc_como;
   document.getElementById('m-steps').innerHTML='';
   e.steps.forEach(s=>addStepField(s));
+  document.getElementById('m-updates').innerHTML='';
+  (e.updates||[]).forEach(u=>addUpdateField(u));
   tempEvidences=[...(e.evidences||[])];
   renderEvidenceEditor();
   document.getElementById('error-modal').classList.add('open');
 }
 
-function clearModal() {
+function clearModal(){
   ['m-titulo','m-sistema','m-freq','m-sintoma','m-causa','m-resultado','m-esc-quando','m-esc-para','m-esc-como'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('m-sev').value='Média';
   document.getElementById('m-steps').innerHTML='';
-  tempEvidences=[];
-  renderEvidenceEditor();
+  document.getElementById('m-updates').innerHTML='';
+  tempEvidences=[];renderEvidenceEditor();
 }
 
-function addStepField(s) {
-  const sc=document.getElementById('m-steps');
-  const d=document.createElement('div'); d.className='step-edit-row';
+function addStepField(s){
+  const sc=document.getElementById('m-steps');const d=document.createElement('div');d.className='step-edit-row';
   d.innerHTML=`<select>${TIPOS.map(t=>`<option value="${t}" ${s&&s.tipo===t?'selected':''}>${t}</option>`).join('')}</select><textarea placeholder="Descreva o passo...">${s?s.texto:''}</textarea><button onclick="this.parentElement.remove()" title="Remover">✕</button>`;
   sc.appendChild(d);
 }
 
-function handleEvidenceUpload(e) {
+function addUpdateField(u){
+  const sc=document.getElementById('m-updates');const d=document.createElement('div');d.className='update-edit-row';
+  d.innerHTML=`<input type="date" value="${u?u.date:today()}"><input type="text" placeholder="Descreva o que foi alterado..." value="${u?u.desc:''}"><button onclick="this.parentElement.remove()" title="Remover">✕</button>`;
+  sc.appendChild(d);
+}
+
+function handleEvidenceUpload(e){
   const files=[...e.target.files];
-  files.forEach(file=>{
-    const reader=new FileReader();
-    reader.onload=ev=>{
-      tempEvidences.push({data:ev.target.result, caption:file.name.replace(/\.[^.]+$/,''), name:file.name});
-      renderEvidenceEditor();
-    };
-    reader.readAsDataURL(file);
-  });
+  files.forEach(file=>{const reader=new FileReader();reader.onload=ev=>{tempEvidences.push({data:ev.target.result,caption:file.name.replace(/\.[^.]+$/,''),name:file.name});renderEvidenceEditor();};reader.readAsDataURL(file);});
   e.target.value='';
 }
 
-function renderEvidenceEditor() {
+function renderEvidenceEditor(){
   const c=document.getElementById('m-evidences');
-  c.innerHTML=tempEvidences.map((ev,i)=>`
-    <div class="evidence-edit-item">
-      <img src="${ev.data}" alt="${ev.caption}">
-      <div class="evidence-edit-item-info">
-        <div class="evidence-edit-item-name">${ev.name||'Imagem'}</div>
-        <div class="evidence-edit-item-caption"><input type="text" value="${ev.caption}" placeholder="Legenda da evidência" oninput="tempEvidences[${i}].caption=this.value"></div>
-      </div>
-      <button class="evidence-del-btn" onclick="tempEvidences.splice(${i},1);renderEvidenceEditor()">✕</button>
-    </div>`).join('');
+  c.innerHTML=tempEvidences.map((ev,i)=>`<div class="evidence-edit-item"><img src="${ev.data}" alt="${ev.caption}"><div class="evidence-edit-item-info"><div class="evidence-edit-item-name">${ev.name||'Imagem'}</div><div class="evidence-edit-item-caption"><input type="text" value="${ev.caption}" placeholder="Legenda" oninput="tempEvidences[${i}].caption=this.value"></div></div><button class="evidence-del-btn" onclick="tempEvidences.splice(${i},1);renderEvidenceEditor()">✕</button></div>`).join('');
 }
 
-function closeErrorModal() { document.getElementById('error-modal').classList.remove('open'); }
+function closeErrorModal(){document.getElementById('error-modal').classList.remove('open');}
 
-function saveError() {
+function saveError(){
   const si=parseInt(document.getElementById('m-sec-idx').value);
   const eiR=document.getElementById('m-err-idx').value;
   const isEdit=eiR!=='';
   const steps=[...document.querySelectorAll('#m-steps .step-edit-row')].map(r=>({tipo:r.querySelector('select').value,texto:r.querySelector('textarea').value.trim()})).filter(s=>s.texto);
-  const entry={
-    id:isEdit?sections[si].errors[parseInt(eiR)].id:genErrorId(si),
-    titulo:document.getElementById('m-titulo').value.trim()||'Sem título',
-    sistema:document.getElementById('m-sistema').value.trim(),
-    freq:document.getElementById('m-freq').value.trim(),
-    sev:document.getElementById('m-sev').value,
-    sintoma:document.getElementById('m-sintoma').value.trim(),
-    causa:document.getElementById('m-causa').value.trim(),
-    steps,
-    resultado:document.getElementById('m-resultado').value.trim(),
-    esc_quando:document.getElementById('m-esc-quando').value.trim(),
-    esc_para:document.getElementById('m-esc-para').value.trim(),
-    esc_como:document.getElementById('m-esc-como').value.trim(),
-    evidences:[...tempEvidences]
-  };
-  if(isEdit) sections[si].errors[parseInt(eiR)]=entry;
-  else sections[si].errors.push(entry);
-  closeErrorModal();
-  renderAll();
+  const updates=[...document.querySelectorAll('#m-updates .update-edit-row')].map(r=>({date:r.querySelector('input[type=date]').value,desc:r.querySelector('input[type=text]').value.trim()})).filter(u=>u.desc);
+  const entry={id:isEdit?sections[si].errors[parseInt(eiR)].id:genErrorId(si),titulo:document.getElementById('m-titulo').value.trim()||'Sem título',sistema:document.getElementById('m-sistema').value.trim(),freq:document.getElementById('m-freq').value.trim(),sev:document.getElementById('m-sev').value,sintoma:document.getElementById('m-sintoma').value.trim(),causa:document.getElementById('m-causa').value.trim(),steps,resultado:document.getElementById('m-resultado').value.trim(),esc_quando:document.getElementById('m-esc-quando').value.trim(),esc_para:document.getElementById('m-esc-para').value.trim(),esc_como:document.getElementById('m-esc-como').value.trim(),updates,evidences:[...tempEvidences]};
+  if(isEdit)sections[si].errors[parseInt(eiR)]=entry;else sections[si].errors.push(entry);
+  closeErrorModal();renderAll();
 }
 
-function openAddSection() { document.getElementById('m-section-name').value=''; document.getElementById('section-modal').classList.add('open'); }
-function closeSectionModal() { document.getElementById('section-modal').classList.remove('open'); }
-function saveSection() {
-  const name=document.getElementById('m-section-name').value.trim();
-  if(!name)return;
-  sections.push({id:`sec-${Date.now()}`,name,errors:[]});
-  closeSectionModal(); renderAll();
-}
+function openAddSection(){document.getElementById('m-section-name').value='';document.getElementById('section-modal').classList.add('open');}
+function closeSectionModal(){document.getElementById('section-modal').classList.remove('open');}
+function saveSection(){const name=document.getElementById('m-section-name').value.trim();if(!name)return;sections.push({id:`sec-${Date.now()}`,name,errors:[]});closeSectionModal();renderAll();}
 
-function filterErrors(q) {
-  q=q.toLowerCase().trim();
-  const cards=document.querySelectorAll('.error-card');
-  let v=0;
-  cards.forEach(c=>{const m=!q||c.dataset.title.includes(q);c.classList.toggle('hidden',!m);if(m)v++;});
+function filterErrors(q){
+  currentSearchQ=q.toLowerCase().trim();
+  const cards=document.querySelectorAll('.error-card');let v=0;
+  cards.forEach(c=>{const matchQ=!currentSearchQ||c.dataset.title.includes(currentSearchQ);const matchS=currentSevFilter==='all'||c.dataset.sev===currentSevFilter;const show=matchQ&&matchS;c.classList.toggle('hidden',!show);if(show)v++;});
   document.getElementById('empty-state').style.display=v===0?'block':'none';
 }
 
-function openExport() {
-  document.getElementById('export-code').value=document.documentElement.outerHTML;
-  document.getElementById('export-modal').classList.add('open');
-}
-function closeExport() { document.getElementById('export-modal').classList.remove('open'); }
-function copyExport() {
-  const ta=document.getElementById('export-code'); ta.select(); document.execCommand('copy');
-  const btn=document.querySelector('.copy-btn'); btn.textContent='✓ Copiado!';
-  setTimeout(()=>btn.textContent='Copiar tudo',2500);
+function filterBySev(sev,btn){
+  currentSevFilter=sev;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active-filter'));
+  btn.classList.add('active-filter');
+  filterErrors(currentSearchQ);
+  renderSidebar();
 }
 
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      document.querySelectorAll('.sidebar-item').forEach(i=>i.classList.remove('active'));
-      const l=document.querySelector(`.sidebar-item[href="#${e.target.id}"]`);
-      if(l)l.classList.add('active');
-    }
-  });
-},{threshold:0.3});
+function openExport(){document.getElementById('export-code').value=document.documentElement.outerHTML;document.getElementById('export-modal').classList.add('open');}
+function closeExport(){document.getElementById('export-modal').classList.remove('open');}
+function copyExport(){const ta=document.getElementById('export-code');ta.select();document.execCommand('copy');const btn=document.querySelector('.copy-btn');btn.textContent='✓ Copiado!';setTimeout(()=>btn.textContent='Copiar tudo',2500);}
 
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.sidebar-item').forEach(i=>i.classList.remove('active'));const l=document.querySelector(`.sidebar-item[href="#${e.target.id}"]`);if(l)l.classList.add('active');}});},{threshold:0.3});
 renderAll();
 setTimeout(()=>document.querySelectorAll('.error-card').forEach(c=>obs.observe(c)),100);
 </script>
